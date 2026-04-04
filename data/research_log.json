@@ -1,1 +1,220 @@
-[]
+[
+  {
+    "timestamp": "2026-04-04T22:02:20Z",
+    "type": "search_error",
+    "channel": "faith",
+    "query": "what does the Bible say about anxiety",
+    "error": "403 Client Error: Forbidden for url: https://www.googleapis.com/youtube/v3/search?part=snippet&q=what+does+the+Bible+say+about+anxiety&type=video&order=relevance&maxResults=10&publishedAfter=2026-02-18T22%3A02%3A20Z&key=AIzaSyAjhnN4MPJSclVX6jElZz2Do2Zo1UjNkCQ"
+  },
+  {
+    "timestamp": "2026-04-04T22:02:20Z",
+    "type": "search_error",
+    "channel": "faith",
+    "query": "what does the Bible say about fear",
+    "error": "403 Client Error: Forbidden for url: https://www.googleapis.com/youtube/v3/search?part=snippet&q=what+does+the+Bible+say+about+fear&type=video&order=relevance&maxResults=10&publishedAfter=2026-02-18T22%3A02%3A20Z&key=AIzaSyAjhnN4MPJSclVX6jElZz2Do2Zo1UjNkCQ"
+  },
+  {
+    "timestamp": "2026-04-04T22:02:20Z",
+    "type": "search_error",
+    "channel": "faith",
+    "query": "what does the Bible say about loneliness",
+    "error": "403 Client Error: Forbidden for url: https://www.googleapis.com/youtube/v3/search?part=snippet&q=what+does+the+Bible+say+about+loneliness&type=video&order=relevance&maxResults=10&publishedAfter=2026-02-18T22%3A02%3A20Z&key=AIzaSyAjhnN4MPJSclVX6jElZz2Do2Zo1UjNkCQ"
+  },
+  {
+    "timestamp": "2026-04-04T22:02:20Z",
+    "type": "search_error",
+    "channel": "faith",
+    "query": "what does the Bible say about rejection",
+    "error": "403 Client Error: Forbidden for url: https://www.googleapis.com/youtube/v3/search?part=snippet&q=what+does+the+Bible+say+about+rejection&type=video&order=relevance&maxResults=10&publishedAfter=2026-02-18T22%3A02%3A20Z&key=AIzaSyAjhnN4MPJSclVX6jElZz2Do2Zo1UjNkCQ"
+  },
+  {
+    "timestamp": "2026-04-04T22:02:20Z",
+    "type": "search_error",
+    "channel": "faith",
+    "query": "what does the Bible say about purpose",
+    "error": "403 Client Error: Forbidden for url: https://www.googleapis.com/youtube/v3/search?part=snippet&q=what+does+the+Bible+say+about+purpose&type=video&order=relevance&maxResults=10&publishedAfter=2026-02-18T22%3A02%3A20Z&key=AIzaSyAjhnN4MPJSclVX6jElZz2Do2Zo1UjNkCQ"
+  },
+  {
+    "timestamp": "2026-04-04T22:02:21Z",
+    "type": "search_error",
+    "channel": "faith",
+    "query": "why does God feel silent",
+    "error": "403 Client Error: Forbidden for url: https://www.googleapis.com/youtube/v3/search?part=snippet&q=why+does+God+feel+silent&type=video&order=relevance&maxResults=10&publishedAfter=2026-02-18T22%3A02%3A20Z&key=AIzaSyAjhnN4MPJSclVX6jElZz2Do2Zo1UjNkCQ"
+  },
+  {
+    "timestamp": "2026-04-04T22:02:21Z",
+    "type": "search_error",
+    "channel": "faith",
+    "query": "how to trust God when nothing changes",
+    "error": "403 Client Error: Forbidden for url: https://www.googleapis.com/youtube/v3/search?part=snippet&q=how+to+trust+God+when+nothing+changes&type=video&order=relevance&maxResults=10&publishedAfter=2026-02-18T22%3A02%3A21Z&key=AIzaSyAjhnN4MPJSclVX6jElZz2Do2Zo1UjNkCQ"
+  },
+  {
+    "timestamp": "2026-04-04T22:02:21Z",
+    "type": "search_error",
+    "channel": "faith",
+    "query": "how to stop overthinking as a Christian",
+    "error": "403 Client Error: Forbidden for url: https://www.googleapis.com/youtube/v3/search?part=snippet&q=how+to+stop+overthinking+as+a+Christian&type=video&order=relevance&maxResults=10&publishedAfter=2026-02-18T22%3A02%3A21Z&key=AIzaSyAjhnN4MPJSclVX6jElZz2Do2Zo1UjNkCQ"
+  },
+  {
+    "timestamp": "2026-04-04T22:02:21Z",
+    "type": "search_error",
+    "channel": "faith",
+    "query": "how to hear God's voice",
+    "error": "403 Client Error: Forbidden for url: https://www.googleapis.com/youtube/v3/search?part=snippet&q=how+to+hear+God%27s+voice&type=video&order=relevance&maxResults=10&publishedAfter=2026-02-18T22%3A02%3A21Z&key=AIzaSyAjhnN4MPJSclVX6jElZz2Do2Zo1UjNkCQ"
+  },
+  {
+    "timestamp": "2026-04-04T22:02:21Z",
+    "type": "search_error",
+    "channel": "faith",
+    "query": "how to know God's will",
+    "error": "403 Client Error: Forbidden for url: https://www.googleapis.com/youtube/v3/search?part=snippet&q=how+to+know+God%27s+will&type=video&order=relevance&maxResults=10&publishedAfter=2026-02-18T22%3A02%3A21Z&key=AIzaSyAjhnN4MPJSclVX6jElZz2Do2Zo1UjNkCQ"
+  },
+  {
+    "timestamp": "2026-04-04T22:02:21Z",
+    "type": "search_error",
+    "channel": "faith",
+    "query": "why prayer feels unanswered",
+    "error": "403 Client Error: Forbidden for url: https://www.googleapis.com/youtube/v3/search?part=snippet&q=why+prayer+feels+unanswered&type=video&order=relevance&maxResults=10&publishedAfter=2026-02-18T22%3A02%3A21Z&key=AIzaSyAjhnN4MPJSclVX6jElZz2Do2Zo1UjNkCQ"
+  },
+  {
+    "timestamp": "2026-04-04T22:02:21Z",
+    "type": "search_error",
+    "channel": "faith",
+    "query": "what grace really means",
+    "error": "403 Client Error: Forbidden for url: https://www.googleapis.com/youtube/v3/search?part=snippet&q=what+grace+really+means&type=video&order=relevance&maxResults=10&publishedAfter=2026-02-18T22%3A02%3A21Z&key=AIzaSyAjhnN4MPJSclVX6jElZz2Do2Zo1UjNkCQ"
+  },
+  {
+    "timestamp": "2026-04-04T22:02:21Z",
+    "type": "search_error",
+    "channel": "faith",
+    "query": "why Christians struggle with peace",
+    "error": "403 Client Error: Forbidden for url: https://www.googleapis.com/youtube/v3/search?part=snippet&q=why+Christians+struggle+with+peace&type=video&order=relevance&maxResults=10&publishedAfter=2026-02-18T22%3A02%3A21Z&key=AIzaSyAjhnN4MPJSclVX6jElZz2Do2Zo1UjNkCQ"
+  },
+  {
+    "timestamp": "2026-04-04T22:02:22Z",
+    "type": "search_error",
+    "channel": "faith",
+    "query": "how to deal with spiritual dryness",
+    "error": "403 Client Error: Forbidden for url: https://www.googleapis.com/youtube/v3/search?part=snippet&q=how+to+deal+with+spiritual+dryness&type=video&order=relevance&maxResults=10&publishedAfter=2026-02-18T22%3A02%3A21Z&key=AIzaSyAjhnN4MPJSclVX6jElZz2Do2Zo1UjNkCQ"
+  },
+  {
+    "timestamp": "2026-04-04T22:02:22Z",
+    "type": "search_error",
+    "channel": "faith",
+    "query": "how to deal with guilt and shame biblically",
+    "error": "403 Client Error: Forbidden for url: https://www.googleapis.com/youtube/v3/search?part=snippet&q=how+to+deal+with+guilt+and+shame+biblically&type=video&order=relevance&maxResults=10&publishedAfter=2026-02-18T22%3A02%3A22Z&key=AIzaSyAjhnN4MPJSclVX6jElZz2Do2Zo1UjNkCQ"
+  },
+  {
+    "timestamp": "2026-04-04T22:02:22Z",
+    "type": "search_error",
+    "channel": "faith",
+    "query": "what the Bible says about waiting on God",
+    "error": "403 Client Error: Forbidden for url: https://www.googleapis.com/youtube/v3/search?part=snippet&q=what+the+Bible+says+about+waiting+on+God&type=video&order=relevance&maxResults=10&publishedAfter=2026-02-18T22%3A02%3A22Z&key=AIzaSyAjhnN4MPJSclVX6jElZz2Do2Zo1UjNkCQ"
+  },
+  {
+    "timestamp": "2026-04-04T22:02:22Z",
+    "type": "search_error",
+    "channel": "faith",
+    "query": "what the Bible says about depression",
+    "error": "403 Client Error: Forbidden for url: https://www.googleapis.com/youtube/v3/search?part=snippet&q=what+the+Bible+says+about+depression&type=video&order=relevance&maxResults=10&publishedAfter=2026-02-18T22%3A02%3A22Z&key=AIzaSyAjhnN4MPJSclVX6jElZz2Do2Zo1UjNkCQ"
+  },
+  {
+    "timestamp": "2026-04-04T22:02:22Z",
+    "type": "search_error",
+    "channel": "faith",
+    "query": "what the Bible says about worry",
+    "error": "403 Client Error: Forbidden for url: https://www.googleapis.com/youtube/v3/search?part=snippet&q=what+the+Bible+says+about+worry&type=video&order=relevance&maxResults=10&publishedAfter=2026-02-18T22%3A02%3A22Z&key=AIzaSyAjhnN4MPJSclVX6jElZz2Do2Zo1UjNkCQ"
+  },
+  {
+    "timestamp": "2026-04-04T22:02:22Z",
+    "type": "search_error",
+    "channel": "faith",
+    "query": "how to let go and trust God",
+    "error": "403 Client Error: Forbidden for url: https://www.googleapis.com/youtube/v3/search?part=snippet&q=how+to+let+go+and+trust+God&type=video&order=relevance&maxResults=10&publishedAfter=2026-02-18T22%3A02%3A22Z&key=AIzaSyAjhnN4MPJSclVX6jElZz2Do2Zo1UjNkCQ"
+  },
+  {
+    "timestamp": "2026-04-04T22:02:22Z",
+    "type": "search_error",
+    "channel": "faith",
+    "query": "how to fight negative thoughts biblically",
+    "error": "403 Client Error: Forbidden for url: https://www.googleapis.com/youtube/v3/search?part=snippet&q=how+to+fight+negative+thoughts+biblically&type=video&order=relevance&maxResults=10&publishedAfter=2026-02-18T22%3A02%3A22Z&key=AIzaSyAjhnN4MPJSclVX6jElZz2Do2Zo1UjNkCQ"
+  },
+  {
+    "timestamp": "2026-04-04T22:02:22Z",
+    "type": "search_error",
+    "channel": "faith",
+    "query": "If you're feeling anxious, watch this",
+    "error": "403 Client Error: Forbidden for url: https://www.googleapis.com/youtube/v3/search?part=snippet&q=If+you%27re+feeling+anxious%2C+watch+this&type=video&order=relevance&maxResults=10&publishedAfter=2026-02-18T22%3A02%3A22Z&key=AIzaSyAjhnN4MPJSclVX6jElZz2Do2Zo1UjNkCQ"
+  },
+  {
+    "timestamp": "2026-04-04T22:02:22Z",
+    "type": "search_error",
+    "channel": "faith",
+    "query": "If God feels silent right now, watch this",
+    "error": "403 Client Error: Forbidden for url: https://www.googleapis.com/youtube/v3/search?part=snippet&q=If+God+feels+silent+right+now%2C+watch+this&type=video&order=relevance&maxResults=10&publishedAfter=2026-02-18T22%3A02%3A22Z&key=AIzaSyAjhnN4MPJSclVX6jElZz2Do2Zo1UjNkCQ"
+  },
+  {
+    "timestamp": "2026-04-04T22:02:23Z",
+    "type": "search_error",
+    "channel": "faith",
+    "query": "You may be overthinking this",
+    "error": "403 Client Error: Forbidden for url: https://www.googleapis.com/youtube/v3/search?part=snippet&q=You+may+be+overthinking+this&type=video&order=relevance&maxResults=10&publishedAfter=2026-02-18T22%3A02%3A22Z&key=AIzaSyAjhnN4MPJSclVX6jElZz2Do2Zo1UjNkCQ"
+  },
+  {
+    "timestamp": "2026-04-04T22:02:23Z",
+    "type": "search_error",
+    "channel": "faith",
+    "query": "This is why you still feel stuck",
+    "error": "403 Client Error: Forbidden for url: https://www.googleapis.com/youtube/v3/search?part=snippet&q=This+is+why+you+still+feel+stuck&type=video&order=relevance&maxResults=10&publishedAfter=2026-02-18T22%3A02%3A23Z&key=AIzaSyAjhnN4MPJSclVX6jElZz2Do2Zo1UjNkCQ"
+  },
+  {
+    "timestamp": "2026-04-04T22:02:23Z",
+    "type": "search_error",
+    "channel": "faith",
+    "query": "You need to hear this today",
+    "error": "403 Client Error: Forbidden for url: https://www.googleapis.com/youtube/v3/search?part=snippet&q=You+need+to+hear+this+today&type=video&order=relevance&maxResults=10&publishedAfter=2026-02-18T22%3A02%3A23Z&key=AIzaSyAjhnN4MPJSclVX6jElZz2Do2Zo1UjNkCQ"
+  },
+  {
+    "timestamp": "2026-04-04T22:02:23Z",
+    "type": "search_error",
+    "channel": "faith",
+    "query": "If you're tired of waiting on God, listen to this",
+    "error": "403 Client Error: Forbidden for url: https://www.googleapis.com/youtube/v3/search?part=snippet&q=If+you%27re+tired+of+waiting+on+God%2C+listen+to+this&type=video&order=relevance&maxResults=10&publishedAfter=2026-02-18T22%3A02%3A23Z&key=AIzaSyAjhnN4MPJSclVX6jElZz2Do2Zo1UjNkCQ"
+  },
+  {
+    "timestamp": "2026-04-04T22:02:23Z",
+    "type": "search_error",
+    "channel": "faith",
+    "query": "This truth can change how you see your struggle",
+    "error": "403 Client Error: Forbidden for url: https://www.googleapis.com/youtube/v3/search?part=snippet&q=This+truth+can+change+how+you+see+your+struggle&type=video&order=relevance&maxResults=10&publishedAfter=2026-02-18T22%3A02%3A23Z&key=AIzaSyAjhnN4MPJSclVX6jElZz2Do2Zo1UjNkCQ"
+  },
+  {
+    "timestamp": "2026-04-04T22:03:17Z",
+    "type": "daily_run_summary",
+    "channel": "faith",
+    "channel_name": "Faith Encouragement",
+    "raw_result_count": 0,
+    "candidate_count": 18,
+    "approved_count": 18,
+    "approved_topics": [
+      "3 Scriptures to Stop a 2 a.m. Anxiety Spiral",
+      "Hearing God’s Voice: 3 Checks to Discern Promptings",
+      "Breaking Morning Anxiety: A 3-Step Biblical Routine",
+      "Night Prayers for Overthinkers: 3 Short Prayers That Quiet the Mind",
+      "How to Turn Overthinking into Prayer in 5 Minutes",
+      "Waiting on God Without Wasting Your Life",
+      "Intrusive Thoughts: A Biblical Way to Respond in 90 Seconds",
+      "Rejected? How to Heal the Sting Without Getting Bitter",
+      "When Fear of the Future Won’t Let Go",
+      "Purpose When You Feel Behind Everyone Else",
+      "Dry Quiet Times: Meeting God When You Feel Nothing",
+      "Guilt vs. Shame: How to Receive Grace and Still Grow",
+      "After You Mess Up: A 24-Hour Grace Plan",
+      "Loneliness: What to Do When You Feel Invisible to God and People",
+      "Decision Paralysis: Finding God’s Will When Options All Seem Good",
+      "When God Seems Silent: What Silence Might Mean and What to Do",
+      "How to Stop Doomscrolling and Renew Your Mind",
+      "Handling Social Anxiety at Church (Without Ghosting the Exit Doors)"
+    ]
+  }
+]
