@@ -1,5 +1,6 @@
 name: Daily Topic Research
-
+permissions:
+  contents: write
 on:
   schedule:
     - cron: '15 11 * * *'
