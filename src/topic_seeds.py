@@ -1,32 +1,21 @@
-SEED_PATTERNS = [
-    "what does the Bible say about anxiety",
-    "what does the Bible say about fear",
-    "what does the Bible say about loneliness",
-    "what does the Bible say about rejection",
-    "what does the Bible say about purpose",
-    "why does God feel silent",
-    "how to trust God when nothing changes",
-    "how to stop overthinking as a Christian",
-    "how to hear God's voice",
-    "how to know God's will",
-    "why prayer feels unanswered",
-    "what grace really means",
-    "why Christians struggle with peace",
-    "how to deal with spiritual dryness",
-    "how to deal with guilt and shame biblically",
-    "what the Bible says about waiting on God",
-    "what the Bible says about depression",
-    "what the Bible says about worry",
-    "how to let go and trust God",
-    "how to fight negative thoughts biblically",
-]
+import json
+from pathlib import Path
 
-SHORT_HOOK_PATTERNS = [
-    "If you're feeling anxious, watch this",
-    "If God feels silent right now, watch this",
-    "You may be overthinking this",
-    "This is why you still feel stuck",
-    "You need to hear this today",
-    "If you're tired of waiting on God, listen to this",
-    "This truth can change how you see your struggle",
-]
+
+def load_channel_profile(channel_slug: str = "faith") -> dict:
+    channel_path = Path(f"channels/{channel_slug}.json")
+    if not channel_path.exists():
+        raise FileNotFoundError(f"Channel profile not found: {channel_path}")
+
+    with open(channel_path, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+
+def get_seed_patterns(channel_slug: str = "faith") -> list[str]:
+    profile = load_channel_profile(channel_slug)
+    return profile.get("seed_patterns", [])
+
+
+def get_short_hook_patterns(channel_slug: str = "faith") -> list[str]:
+    profile = load_channel_profile(channel_slug)
+    return profile.get("short_hook_patterns", [])
