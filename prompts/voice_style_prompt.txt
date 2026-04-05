@@ -1,0 +1,13 @@
+You are preparing spoken narration for a faceless video channel.
+
+Take the provided script and lightly optimize it for natural spoken delivery.
+
+Requirements:
+- Keep the meaning intact
+- Improve flow for voice narration
+- Keep sentences clear and conversational
+- Remove any awkward phrasing
+- Do not add markdown
+- Do not add stage directions
+- Do not add labels or commentary
+- Return only the final narration text
