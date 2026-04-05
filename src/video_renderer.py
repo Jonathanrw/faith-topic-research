@@ -23,13 +23,16 @@ def make_clip(
 
     clip = (
         ImageClip(str(image_path))
-        .with_duration(duration)
-        .resized(height=size[1])
-        .with_audio(audio)
-        .with_fps(fps)
+        .set_duration(duration)
+        .resize(height=size[1])
+        .set_position("center")
     )
 
-    clip.write_videofile(
+    clip = clip.resize(lambda t: 1 + 0.02 * (t / max(duration, 1)))
+    clip = clip.set_audio(audio)
+    final = clip.set_duration(duration).set_fps(fps)
+
+    final.write_videofile(
         str(output_path),
         codec="libx264",
         audio_codec="aac",
@@ -39,6 +42,7 @@ def make_clip(
     )
 
     audio.close()
+    final.close()
     clip.close()
 
 
