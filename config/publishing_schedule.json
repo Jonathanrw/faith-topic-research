@@ -1,0 +1,22 @@
+{
+  "timezone": "America/Chicago",
+  "youtube_long": "11:30",
+  "short_1": "15:30",
+  "short_2": "18:30",
+  "short_3": "20:30",
+  "platforms": {
+    "youtube": {
+      "long_enabled": true,
+      "shorts_enabled": true
+    },
+    "instagram": {
+      "reels_enabled": true
+    },
+    "facebook": {
+      "reels_enabled": true
+    },
+    "tiktok": {
+      "enabled": true
+    }
+  }
+}
