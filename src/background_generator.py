@@ -46,13 +46,24 @@ def generate_image_bytes(prompt: str, size: str = "1536x1024") -> bytes:
     }
 
     payload = {
+        "model": "gpt-image-1",
         "prompt": prompt,
         "size": size,
+        "output_format": "png",
     }
 
     response = requests.post(IMAGES_URL, headers=headers, json=payload, timeout=120)
-    response.raise_for_status()
+
+    if not response.ok:
+        print("Image API error:")
+        print(response.status_code)
+        print(response.text)
+        response.raise_for_status()
+
     data = response.json()
+
+    if "data" not in data or not data["data"]:
+        raise ValueError(f"Unexpected image response: {data}")
 
     image_b64 = data["data"][0]["b64_json"]
     return base64.b64decode(image_b64)
