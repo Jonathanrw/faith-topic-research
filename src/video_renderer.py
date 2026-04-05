@@ -1,6 +1,4 @@
-from pathlib import Path
-
-from moviepy import AudioFileClip, ImageClip
+from moviepy.editor import AudioFileClip, ImageClip
 
 
 VIDEO_DIR = Path("content/videos")
