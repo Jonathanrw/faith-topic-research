@@ -1,0 +1,91 @@
+from pathlib import Path
+
+from moviepy.editor import AudioFileClip, ImageClip
+
+
+VIDEO_DIR = Path("content/videos")
+AUDIO_DIR = Path("content/audio")
+BACKGROUND_DIR = Path("content/backgrounds")
+
+
+def ensure_video_dir() -> None:
+    VIDEO_DIR.mkdir(parents=True, exist_ok=True)
+
+
+def make_clip(
+    image_path: Path,
+    audio_path: Path,
+    output_path: Path,
+    size: tuple[int, int],
+    fps: int = 24,
+) -> None:
+    audio = AudioFileClip(str(audio_path))
+    duration = audio.duration
+
+    clip = (
+        ImageClip(str(image_path))
+        .set_duration(duration)
+        .resize(height=size[1])
+        .set_position("center")
+    )
+
+    clip = clip.resize(lambda t: 1 + 0.02 * (t / max(duration, 1)))
+    clip = clip.set_audio(audio)
+
+    final = clip.set_duration(duration).set_fps(fps)
+
+    final.write_videofile(
+        str(output_path),
+        codec="libx264",
+        audio_codec="aac",
+        fps=fps,
+        threads=4,
+        logger=None,
+    )
+
+    audio.close()
+    final.close()
+
+
+def render_long_video(base_name: str) -> Path | None:
+    audio_path = AUDIO_DIR / f"{base_name}_long_voice.mp3"
+    image_path = BACKGROUND_DIR / f"{base_name}_bg.png"
+    output_path = VIDEO_DIR / f"{base_name}_long.mp4"
+
+    if not audio_path.exists():
+        print(f"Missing long audio: {audio_path}")
+        return None
+
+    if not image_path.exists():
+        print(f"Missing long background: {image_path}")
+        return None
+
+    make_clip(
+        image_path=image_path,
+        audio_path=audio_path,
+        output_path=output_path,
+        size=(1920, 1080),
+    )
+    return output_path
+
+
+def render_short_video(base_name: str, idx: int) -> Path | None:
+    audio_path = AUDIO_DIR / f"{base_name}_short_{idx}_voice.mp3"
+    image_path = BACKGROUND_DIR / f"{base_name}_short_{idx}_bg.png"
+    output_path = VIDEO_DIR / f"{base_name}_short_{idx}.mp4"
+
+    if not audio_path.exists():
+        print(f"Missing short audio: {audio_path}")
+        return None
+
+    if not image_path.exists():
+        print(f"Missing short background: {image_path}")
+        return None
+
+    make_clip(
+        image_path=image_path,
+        audio_path=audio_path,
+        output_path=output_path,
+        size=(1080, 1920),
+    )
+    return output_path
