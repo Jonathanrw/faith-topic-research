@@ -25,6 +25,7 @@ def parse_local_datetime(date_str: str, time_str: str, timezone_name: str) -> st
 def build_daily_schedule(base_name: str, date_str: str | None = None) -> dict:
     config = load_schedule_config()
     timezone_name = config["timezone"]
+    altered_default = config.get("youtube_altered_content_default", True)
 
     local_now = datetime.now(ZoneInfo(timezone_name))
     if date_str is None:
@@ -42,26 +43,30 @@ def build_daily_schedule(base_name: str, date_str: str | None = None) -> dict:
         "youtube_long": {
             "video_file": f"{base_name}_long.mp4",
             "publish_at": parse_local_datetime(date_str, long_time, timezone_name),
-            "enabled": config["platforms"]["youtube"]["long_enabled"]
+            "enabled": config["platforms"]["youtube"]["long_enabled"],
+            "youtube_altered_content": altered_default
         },
         "shorts": [
             {
                 "slot": 1,
                 "video_file": f"{base_name}_short_1.mp4",
                 "publish_at": parse_local_datetime(date_str, short_1_time, timezone_name),
-                "platforms": ["youtube_shorts", "instagram_reels", "facebook_reels", "tiktok"]
+                "platforms": ["youtube_shorts", "instagram_reels", "facebook_reels", "tiktok"],
+                "youtube_altered_content": altered_default
             },
             {
                 "slot": 2,
                 "video_file": f"{base_name}_short_2.mp4",
                 "publish_at": parse_local_datetime(date_str, short_2_time, timezone_name),
-                "platforms": ["youtube_shorts", "instagram_reels", "facebook_reels", "tiktok"]
+                "platforms": ["youtube_shorts", "instagram_reels", "facebook_reels", "tiktok"],
+                "youtube_altered_content": altered_default
             },
             {
                 "slot": 3,
                 "video_file": f"{base_name}_short_3.mp4",
                 "publish_at": parse_local_datetime(date_str, short_3_time, timezone_name),
-                "platforms": ["youtube_shorts", "instagram_reels", "facebook_reels", "tiktok"]
+                "platforms": ["youtube_shorts", "instagram_reels", "facebook_reels", "tiktok"],
+                "youtube_altered_content": altered_default
             }
         ]
     }
