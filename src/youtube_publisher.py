@@ -37,14 +37,17 @@ def find_shorts_json(base_name: str) -> Path:
     return SCRIPT_DIR / f"{base_name}_shorts.json"
 
 
-def build_long_metadata(base_name: str) -> dict:
+def build_long_metadata(base_name: str, altered_content: bool = True) -> dict:
     script_path = find_long_script(base_name)
     script_text = read_text_file(script_path)
 
     title = base_name.replace("_", " ").replace("-", " ").strip()
     title = title[:95]
 
-    description = script_text[:4500]
+    description = script_text[:4300]
+
+    if altered_content:
+        description += "\n\nDisclosure: This video includes AI-generated visuals."
 
     return {
         "title": title,
