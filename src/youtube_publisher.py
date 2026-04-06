@@ -56,13 +56,16 @@ def build_long_metadata(base_name: str, altered_content: bool = True) -> dict:
     }
 
 
-def build_short_metadata(base_name: str, slot: int) -> dict:
+def build_short_metadata(base_name: str, slot: int, altered_content: bool = True) -> dict:
     shorts_path = find_shorts_json(base_name)
     shorts = json.loads(shorts_path.read_text(encoding="utf-8"))
 
     short = shorts[slot - 1]
     title = short.get("title", f"Short {slot}")[:95]
-    description = short.get("script", "")[:4500]
+    description = short.get("script", "")[:4300]
+
+    if altered_content:
+        description += "\n\nDisclosure: This short includes AI-generated visuals."
 
     return {
         "title": title,
@@ -130,7 +133,8 @@ def publish_from_schedule() -> None:
         "uploads": [],
     }
 
-    long_meta = build_long_metadata(base_name)
+    long_altered = schedule["youtube_long"].get("youtube_altered_content", True)
+    long_meta = build_long_metadata(base_name, altered_content=long_altered)
     long_video = VIDEO_DIR / schedule["youtube_long"]["video_file"]
     long_publish_at = schedule["youtube_long"]["publish_at"]
 
@@ -152,6 +156,7 @@ def publish_from_schedule() -> None:
                 "video_file": long_video.name,
                 "video_id": long_video_id,
                 "publish_at": long_publish_at,
+                "youtube_altered_content": long_altered,
             }
         )
 
@@ -163,7 +168,8 @@ def publish_from_schedule() -> None:
         if not short_video.exists():
             continue
 
-        meta = build_short_metadata(base_name, slot)
+        short_altered = short.get("youtube_altered_content", True)
+        meta = build_short_metadata(base_name, slot, altered_content=short_altered)
 
         short_video_id = upload_video(
             service=service,
@@ -184,6 +190,7 @@ def publish_from_schedule() -> None:
                 "video_file": short_video.name,
                 "video_id": short_video_id,
                 "publish_at": short_publish_at,
+                "youtube_altered_content": short_altered,
             }
         )
 
