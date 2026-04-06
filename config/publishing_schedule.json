@@ -1,5 +1,6 @@
 {
   "timezone": "America/Chicago",
+  "youtube_altered_content_default": true,
   "youtube_long": "11:30",
   "short_1": "15:30",
   "short_2": "18:30",
