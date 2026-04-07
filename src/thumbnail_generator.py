@@ -7,6 +7,7 @@ from typing import Optional, Tuple
 
 from PIL import Image, ImageDraw, ImageEnhance, ImageFilter, ImageFont, ImageOps
 
+from src.channel_profile import DEFAULT_CHANNEL_PROFILE
 from src.ctr_rules import build_thumbnail_subtitle, build_thumbnail_title
 from src.thumbnail_style import DEFAULT_THUMBNAIL_STYLE
 
@@ -270,16 +271,16 @@ def draw_badge(
             (x + badge_w + (pad_x * 2), y + badge_h + (pad_y * 2)),
         ],
         radius=18,
-        fill=style.badge_fill,
+        fill=DEFAULT_THUMBNAIL_STYLE.badge_fill,
     )
 
     draw.text(
         (x + pad_x, y + pad_y - 1),
         badge,
         font=font,
-        fill=style.badge_text_fill,
+        fill=DEFAULT_THUMBNAIL_STYLE.badge_text_fill,
         stroke_width=1,
-        stroke_fill=style.badge_stroke_fill,
+        stroke_fill=DEFAULT_THUMBNAIL_STYLE.badge_stroke_fill,
     )
 
     return y + badge_h + (pad_y * 2)
@@ -290,7 +291,7 @@ def create_thumbnail(
     output_path: Path,
     title: str,
     subtitle: str = "",
-    badge_text: str = "Faith",
+    badge_text: str = "",
     preset: ThumbnailPreset = YOUTUBE_PRESET,
     font_path: Optional[str] = None,
 ) -> Path:
@@ -378,13 +379,16 @@ def build_thumbnail_set(
     base_name: str,
     title: Optional[str] = None,
     subtitle: str = "",
-    badge_text: str = "Faith",
+    badge_text: Optional[str] = None,
     font_path: Optional[str] = None,
 ) -> tuple[Path, Path]:
     ensure_thumbnail_dir()
 
+    profile = DEFAULT_CHANNEL_PROFILE
+
     title_text = title or build_thumbnail_title(base_name)
     subtitle_text = subtitle or build_thumbnail_subtitle(base_name)
+    badge = badge_text if badge_text is not None else profile.thumbnail_badge_text
 
     youtube_output = THUMBNAIL_DIR / f"{base_name}_youtube"
     vertical_output = THUMBNAIL_DIR / f"{base_name}_vertical"
@@ -394,7 +398,7 @@ def build_thumbnail_set(
         output_path=youtube_output,
         title=title_text,
         subtitle=subtitle_text,
-        badge_text=badge_text,
+        badge_text=badge,
         preset=YOUTUBE_PRESET,
         font_path=font_path,
     )
@@ -404,7 +408,7 @@ def build_thumbnail_set(
         output_path=vertical_output,
         title=title_text,
         subtitle=subtitle_text,
-        badge_text=badge_text,
+        badge_text=badge,
         preset=VERTICAL_PRESET,
         font_path=font_path,
     )
