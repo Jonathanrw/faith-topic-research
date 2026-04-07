@@ -37,7 +37,6 @@ def main() -> None:
             yt_thumb, vert_thumb = build_thumbnail_set(
                 background_path=bg_path,
                 base_name=base_name,
-                subtitle="Watch This 👀",
                 badge_text="Faith",
             )
             print(f"Generated thumbnails: {yt_thumb}, {vert_thumb}")
@@ -54,7 +53,6 @@ def main() -> None:
                 yt_thumb, vert_thumb = build_thumbnail_set(
                     background_path=bg_path,
                     base_name=f"{base_name}_short_{idx}",
-                    subtitle="Watch This 👀",
                     badge_text="Faith",
                 )
                 print(f"Generated thumbnails: {yt_thumb}, {vert_thumb}")
