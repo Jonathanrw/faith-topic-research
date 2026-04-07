@@ -5,6 +5,7 @@ from googleapiclient.discovery import build
 from googleapiclient.http import MediaFileUpload
 
 from src.content_packager import get_publish_packages_from_schedule
+from src.preflight_validator import validate_publish_packages
 from src.youtube_auth import get_youtube_credentials
 
 
@@ -75,7 +76,6 @@ def set_thumbnail(service, video_id: str, thumbnail_path: Path) -> None:
 
 
 def publish_from_schedule() -> None:
-    service = get_youtube_service()
     schedule = load_latest_schedule()
     base_name = schedule["base_name"]
 
@@ -86,12 +86,18 @@ def publish_from_schedule() -> None:
     }
 
     packages = get_publish_packages_from_schedule(schedule)
+    validation_errors = validate_publish_packages(packages)
+
+    if validation_errors:
+        print("Preflight validation failed:")
+        for error in validation_errors:
+            print(f" - {error}")
+        raise RuntimeError("Publish stopped because preflight validation failed.")
+
+    service = get_youtube_service()
 
     for package in packages:
         video_path = package["video_path"]
-        if not video_path.exists():
-            print(f"Video not found: {video_path}")
-            continue
 
         video_id = upload_video(
             service=service,
