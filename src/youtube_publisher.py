@@ -9,7 +9,7 @@ from src.youtube_auth import get_youtube_credentials
 
 VIDEO_DIR = Path("content/videos")
 SCHEDULE_DIR = Path("content/schedules")
-BACKGROUND_DIR = Path("content/backgrounds")
+THUMBNAIL_DIR = Path("content/thumbnails")
 SCRIPT_DIR = Path("content/scripts")
 
 
@@ -113,13 +113,15 @@ def upload_video(
 
 def set_thumbnail(service, video_id: str, thumbnail_path: Path) -> None:
     if not thumbnail_path.exists():
+        print(f"Thumbnail not found: {thumbnail_path}")
         return
 
-    media = MediaFileUpload(str(thumbnail_path), mimetype="image/png")
+    media = MediaFileUpload(str(thumbnail_path), mimetype="image/jpeg")
     service.thumbnails().set(
         videoId=video_id,
         media_body=media,
     ).execute()
+    print(f"Thumbnail set: {thumbnail_path}")
 
 
 def publish_from_schedule() -> None:
@@ -127,7 +129,7 @@ def publish_from_schedule() -> None:
     schedule = load_latest_schedule()
     base_name = schedule["base_name"]
 
-    publish_log_path = Path("content/schedules") / f"{base_name}_youtube_publish_log.json"
+    publish_log_path = SCHEDULE_DIR / f"{base_name}_youtube_publish_log.json"
     results = {
         "base_name": base_name,
         "uploads": [],
@@ -147,7 +149,8 @@ def publish_from_schedule() -> None:
             tags=long_meta["tags"],
             publish_at_iso=long_publish_at,
         )
-        long_thumb = BACKGROUND_DIR / f"{base_name}_bg.png"
+
+        long_thumb = THUMBNAIL_DIR / f"{base_name}_youtube.jpg"
         set_thumbnail(service, long_video_id, long_thumb)
 
         results["uploads"].append(
@@ -156,6 +159,7 @@ def publish_from_schedule() -> None:
                 "video_file": long_video.name,
                 "video_id": long_video_id,
                 "publish_at": long_publish_at,
+                "thumbnail_file": long_thumb.name,
                 "youtube_altered_content": long_altered,
             }
         )
@@ -180,7 +184,7 @@ def publish_from_schedule() -> None:
             publish_at_iso=short_publish_at,
         )
 
-        short_thumb = BACKGROUND_DIR / f"{base_name}_short_{slot}_bg.png"
+        short_thumb = THUMBNAIL_DIR / f"{base_name}_short_{slot}_youtube.jpg"
         set_thumbnail(service, short_video_id, short_thumb)
 
         results["uploads"].append(
@@ -190,6 +194,7 @@ def publish_from_schedule() -> None:
                 "video_file": short_video.name,
                 "video_id": short_video_id,
                 "publish_at": short_publish_at,
+                "thumbnail_file": short_thumb.name,
                 "youtube_altered_content": short_altered,
             }
         )
