@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import os
-import textwrap
+import re
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Optional, Tuple
@@ -33,8 +33,8 @@ YOUTUBE_PRESET = ThumbnailPreset(
     max_subtitle_lines=2,
     safe_margin_x=70,
     safe_margin_y=50,
-    title_font_size=94,
-    subtitle_font_size=40,
+    title_font_size=96,
+    subtitle_font_size=42,
     badge_font_size=30,
     panel_height_ratio=0.48,
 )
@@ -47,7 +47,7 @@ VERTICAL_PRESET = ThumbnailPreset(
     safe_margin_x=70,
     safe_margin_y=90,
     title_font_size=110,
-    subtitle_font_size=52,
+    subtitle_font_size=54,
     badge_font_size=34,
     panel_height_ratio=0.42,
 )
@@ -70,9 +70,7 @@ def find_font(preferred: Optional[str] = None) -> str:
     for candidate in candidates:
         if candidate and os.path.exists(candidate):
             return candidate
-    raise FileNotFoundError(
-        "No usable bold font found. Pass a custom font path if needed."
-    )
+    raise FileNotFoundError("No usable bold font found. Pass a custom font path if needed.")
 
 
 def load_font(size: int, font_path: Optional[str] = None) -> ImageFont.FreeTypeFont:
@@ -93,9 +91,9 @@ def resize_and_crop(img: Image.Image, target_size: Tuple[int, int]) -> Image.Ima
 
 
 def enhance_background(img: Image.Image) -> Image.Image:
-    img = ImageEnhance.Contrast(img).enhance(1.08)
-    img = ImageEnhance.Color(img).enhance(1.05)
-    img = ImageEnhance.Sharpness(img).enhance(1.08)
+    img = ImageEnhance.Contrast(img).enhance(1.10)
+    img = ImageEnhance.Color(img).enhance(1.08)
+    img = ImageEnhance.Sharpness(img).enhance(1.10)
     return img
 
 
@@ -106,42 +104,96 @@ def add_soft_text_panel(base: Image.Image, panel_y: int, panel_h: int) -> Image.
     draw.rounded_rectangle(
         [(40, panel_y), (base.width - 40, panel_y + panel_h)],
         radius=36,
-        fill=(0, 0, 0, 120),
+        fill=(0, 0, 0, 130),
     )
 
     blurred = overlay.filter(ImageFilter.GaussianBlur(radius=18))
     return Image.alpha_composite(base.convert("RGBA"), blurred).convert("RGB")
 
 
-def clean_title_from_base_name(base_name: str) -> str:
-    text = base_name.replace("_", " ").replace("-", " ").strip()
-
-    prefixes = ["short 1", "short 2", "short 3", "long"]
-    lowered = text.lower()
-    for prefix in prefixes:
-        if lowered.endswith(prefix):
-            text = text[: -len(prefix)].strip()
-
-    return text.title()
+def strip_timestamp_prefix(text: str) -> str:
+    return re.sub(r"^\d{8}_\d{6}_", "", text).strip()
 
 
-def make_ctr_title(text: str) -> str:
-    replacements = {
-        "Gods": "God's",
-        "Dont": "Don't",
-        "Cant": "Can't",
-        "Wont": "Won't",
-        "Youre": "You're",
-        "Whats": "What's",
-    }
+def strip_suffixes(text: str) -> str:
+    text = re.sub(r"_short_\d+$", "", text)
+    text = re.sub(r"_long$", "", text)
+    return text.strip()
 
-    words = text.split()
-    fixed = [replacements.get(word, word) for word in words]
-    text = " ".join(fixed)
 
-    text = text.replace("2 Am", "2 AM")
-    text = text.replace("Bible Say About", "Bible Says About")
+def base_name_to_phrase(base_name: str) -> str:
+    text = strip_timestamp_prefix(base_name)
+    text = strip_suffixes(text)
+    text = text.replace("_", " ").replace("-", " ").strip()
+    text = re.sub(r"\s+", " ", text)
     return text
+
+
+def title_case_phrase(text: str) -> str:
+    words = text.split()
+    result = []
+    for word in words:
+        lower = word.lower()
+        if lower == "am":
+            result.append("AM")
+        elif lower == "pm":
+            result.append("PM")
+        elif lower == "gods":
+            result.append("God's")
+        elif lower == "dont":
+            result.append("Don't")
+        elif lower == "cant":
+            result.append("Can't")
+        elif lower == "wont":
+            result.append("Won't")
+        elif lower == "youre":
+            result.append("You're")
+        elif lower == "whats":
+            result.append("What's")
+        else:
+            result.append(word.capitalize())
+    return " ".join(result)
+
+
+def build_ctr_title_from_base_name(base_name: str) -> str:
+    phrase = title_case_phrase(base_name_to_phrase(base_name))
+
+    rules = [
+        ("Why Your Prayers Feel Unanswered 7 Scriptural Reasons And Next Steps", "Why Prayers Feel Unanswered"),
+        ("3 Scriptures To Stop A 2 AM Anxiety Spiral", "Stop The 2 AM Spiral"),
+        ("Hearing God's Voice 3 Checks To Discern Promptings", "Hearing God's Voice?"),
+    ]
+
+    for original, replacement in rules:
+        if phrase == original:
+            return replacement
+
+    words = phrase.split()
+
+    if len(words) <= 5:
+        return phrase
+
+    if words[0].isdigit():
+        return " ".join(words[:6])
+
+    if words[0].lower() in {"why", "how", "what", "when"}:
+        return " ".join(words[:5])
+
+    return " ".join(words[:5])
+
+
+def build_ctr_subtitle_from_base_name(base_name: str) -> str:
+    phrase = base_name_to_phrase(base_name).lower()
+
+    if "anxiety" in phrase or "2 am" in phrase or "panic" in phrase or "fear" in phrase:
+        return "Do This Tonight"
+    if "prayer" in phrase or "prayers" in phrase:
+        return "Watch Before You Quit"
+    if "hearing gods voice" in phrase or "gods voice" in phrase:
+        return "3 Checks To Know"
+    if "discern" in phrase:
+        return "Before You Assume"
+    return "Watch This"
 
 
 def wrap_text_by_width(
@@ -175,6 +227,7 @@ def wrap_text_by_width(
 
     trimmed = lines[:max_lines]
     last = trimmed[-1]
+
     while len(last) > 4:
         candidate = last.rstrip(" .,!?:;-") + "..."
         bbox = draw.textbbox((0, 0), candidate, font=font, stroke_width=stroke_width)
@@ -370,8 +423,8 @@ def build_thumbnail_set(
 ) -> tuple[Path, Path]:
     ensure_thumbnail_dir()
 
-    title_text = title or clean_title_from_base_name(base_name)
-    title_text = make_ctr_title(title_text)
+    title_text = title or build_ctr_title_from_base_name(base_name)
+    subtitle_text = subtitle or build_ctr_subtitle_from_base_name(base_name)
 
     youtube_output = THUMBNAIL_DIR / f"{base_name}_youtube"
     vertical_output = THUMBNAIL_DIR / f"{base_name}_vertical"
@@ -380,7 +433,7 @@ def build_thumbnail_set(
         background_path=background_path,
         output_path=youtube_output,
         title=title_text,
-        subtitle=subtitle,
+        subtitle=subtitle_text,
         badge_text=badge_text,
         preset=YOUTUBE_PRESET,
         font_path=font_path,
@@ -390,7 +443,7 @@ def build_thumbnail_set(
         background_path=background_path,
         output_path=vertical_output,
         title=title_text,
-        subtitle=subtitle,
+        subtitle=subtitle_text,
         badge_text=badge_text,
         preset=VERTICAL_PRESET,
         font_path=font_path,
