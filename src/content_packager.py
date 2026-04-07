@@ -1,6 +1,7 @@
 import json
 from pathlib import Path
 
+from src.channel_profile import DEFAULT_CHANNEL_PROFILE
 from src.ctr_rules import (
     build_long_youtube_title,
     build_short_youtube_title,
@@ -22,29 +23,36 @@ def load_shorts_json(base_name: str) -> list[dict]:
 
 
 def build_long_description(script_text: str, altered_content: bool = True) -> str:
-    cta = (
-        "\n\nIf this helped you, subscribe for more Bible-based encouragement, "
-        "clarity, and peace."
-    )
+    profile = DEFAULT_CHANNEL_PROFILE
 
-    disclosure = ""
-    if altered_content:
-        disclosure = "\n\nDisclosure: This video includes AI-generated visuals."
+    description = script_text[:4000]
 
-    return (script_text[:4000] + cta + disclosure)[:4900]
+    if profile.long_cta:
+        description += f"\n\n{profile.long_cta}"
+
+    if altered_content and profile.ai_visual_disclosure_long:
+        description += f"\n\n{profile.ai_visual_disclosure_long}"
+
+    return description[:4900]
 
 
 def build_short_description(script_text: str, altered_content: bool = True) -> str:
-    cta = "\n\nSubscribe for more faith-based shorts and daily encouragement."
+    profile = DEFAULT_CHANNEL_PROFILE
 
-    disclosure = ""
-    if altered_content:
-        disclosure = "\n\nDisclosure: This short includes AI-generated visuals."
+    description = script_text[:4000]
 
-    return (script_text[:4000] + cta + disclosure)[:4900]
+    if profile.short_cta:
+        description += f"\n\n{profile.short_cta}"
+
+    if altered_content and profile.ai_visual_disclosure_short:
+        description += f"\n\n{profile.ai_visual_disclosure_short}"
+
+    return description[:4900]
 
 
 def get_long_package(base_name: str, altered_content: bool = True) -> dict:
+    profile = DEFAULT_CHANNEL_PROFILE
+
     script_path = SCRIPT_DIR / f"{base_name}_long.txt"
     video_path = VIDEO_DIR / f"{base_name}_long.mp4"
     thumbnail_path = THUMBNAIL_DIR / f"{base_name}_youtube.jpg"
@@ -58,23 +66,14 @@ def get_long_package(base_name: str, altered_content: bool = True) -> dict:
         "thumbnail_path": thumbnail_path,
         "title": build_long_youtube_title(base_name),
         "description": build_long_description(script_text, altered_content=altered_content),
-        "tags": [
-            "faith",
-            "christian",
-            "bible",
-            "encouragement",
-            "prayer",
-            "jesus",
-            "hope",
-            "anxiety",
-            "hearing god",
-            "biblical truth",
-        ],
+        "tags": list(profile.long_tags),
         "altered_content": altered_content,
     }
 
 
 def get_short_package(base_name: str, slot: int, altered_content: bool = True) -> dict:
+    profile = DEFAULT_CHANNEL_PROFILE
+
     shorts = load_shorts_json(base_name)
     short = shorts[slot - 1]
 
@@ -92,15 +91,7 @@ def get_short_package(base_name: str, slot: int, altered_content: bool = True) -
         "thumbnail_path": thumbnail_path,
         "title": build_short_youtube_title(short_title, slot),
         "description": build_short_description(short_script, altered_content=altered_content),
-        "tags": [
-            "shorts",
-            "faith",
-            "christian",
-            "bible",
-            "encouragement",
-            "prayer",
-            "hope",
-        ],
+        "tags": list(profile.short_tags),
         "altered_content": altered_content,
     }
 
