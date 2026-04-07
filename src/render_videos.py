@@ -1,5 +1,6 @@
 from pathlib import Path
 
+from src.thumbnail_generator import build_thumbnail_set
 from src.video_renderer import ensure_video_dir, render_long_video, render_short_video
 
 
@@ -31,10 +32,34 @@ def main() -> None:
     if long_output:
         print(f"Created long video: {long_output}")
 
+        bg_path = Path(f"content/backgrounds/{base_name}_bg.png")
+        if bg_path.exists():
+            yt_thumb, vert_thumb = build_thumbnail_set(
+                background_path=bg_path,
+                base_name=base_name,
+                subtitle="Watch This 👀",
+                badge_text="Faith",
+            )
+            print(f"Generated thumbnails: {yt_thumb}, {vert_thumb}")
+        else:
+            print(f"Background not found for thumbnail: {bg_path}")
+
     for idx in range(1, 4):
         short_output = render_short_video(base_name, idx)
         if short_output:
             print(f"Created short video {idx}: {short_output}")
+
+            bg_path = Path(f"content/backgrounds/{base_name}_short_{idx}_bg.png")
+            if bg_path.exists():
+                yt_thumb, vert_thumb = build_thumbnail_set(
+                    background_path=bg_path,
+                    base_name=f"{base_name}_short_{idx}",
+                    subtitle="Watch This 👀",
+                    badge_text="Faith",
+                )
+                print(f"Generated thumbnails: {yt_thumb}, {vert_thumb}")
+            else:
+                print(f"Background not found for short thumbnail: {bg_path}")
 
 
 if __name__ == "__main__":
