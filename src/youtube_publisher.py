@@ -6,6 +6,7 @@ from googleapiclient.http import MediaFileUpload
 
 from src.content_packager import get_publish_packages_from_schedule
 from src.preflight_validator import validate_publish_packages
+from src.publish_manifest import build_manifest, save_manifest
 from src.youtube_auth import get_youtube_credentials
 
 
@@ -126,7 +127,12 @@ def publish_from_schedule() -> None:
         results["uploads"].append(log_entry)
 
     publish_log_path.write_text(json.dumps(results, indent=2), encoding="utf-8")
+
+    manifest = build_manifest(base_name, results["uploads"])
+    manifest_path = save_manifest(base_name, manifest)
+
     print(f"Saved publish log: {publish_log_path}")
+    print(f"Saved manifest: {manifest_path}")
 
 
 if __name__ == "__main__":
