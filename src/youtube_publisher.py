@@ -1,4 +1,5 @@
 import json
+import re
 from pathlib import Path
 
 from googleapiclient.discovery import build
@@ -37,22 +38,135 @@ def find_shorts_json(base_name: str) -> Path:
     return SCRIPT_DIR / f"{base_name}_shorts.json"
 
 
+def strip_timestamp_prefix(text: str) -> str:
+    return re.sub(r"^\d{8}_\d{6}_", "", text).strip()
+
+
+def strip_suffixes(text: str) -> str:
+    text = re.sub(r"_short_\d+$", "", text)
+    text = re.sub(r"_long$", "", text)
+    return text.strip()
+
+
+def base_name_to_phrase(base_name: str) -> str:
+    text = strip_timestamp_prefix(base_name)
+    text = strip_suffixes(text)
+    text = text.replace("_", " ").replace("-", " ").strip()
+    text = re.sub(r"\s+", " ", text)
+    return text
+
+
+def title_case_phrase(text: str) -> str:
+    words = text.split()
+    result = []
+
+    for word in words:
+        lower = word.lower()
+        if lower == "am":
+            result.append("AM")
+        elif lower == "pm":
+            result.append("PM")
+        elif lower == "gods":
+            result.append("God's")
+        elif lower == "dont":
+            result.append("Don't")
+        elif lower == "cant":
+            result.append("Can't")
+        elif lower == "wont":
+            result.append("Won't")
+        elif lower == "youre":
+            result.append("You're")
+        elif lower == "whats":
+            result.append("What's")
+        else:
+            result.append(word.capitalize())
+
+    return " ".join(result)
+
+
+def build_long_title(base_name: str) -> str:
+    phrase = title_case_phrase(base_name_to_phrase(base_name))
+
+    exact_matches = {
+        "Why Your Prayers Feel Unanswered 7 Scriptural Reasons And Next Steps":
+            "Why Your Prayers Feel Unanswered: 7 Biblical Reasons",
+        "3 Scriptures To Stop A 2 AM Anxiety Spiral":
+            "3 Scriptures to Stop a 2 AM Anxiety Spiral",
+        "Hearing God's Voice 3 Checks To Discern Promptings":
+            "Hearing God's Voice? 3 Biblical Checks to Discern It",
+    }
+
+    if phrase in exact_matches:
+        return exact_matches[phrase]
+
+    words = phrase.split()
+    if len(words) <= 10:
+        return phrase[:95]
+
+    return " ".join(words[:10])[:95]
+
+
+def build_short_title(short_title: str, slot: int) -> str:
+    cleaned = short_title.strip()
+
+    replacements = {
+        "60-Second 2 a.m. Reset: 3 Scriptures": "Awake at 2 AM? Do This 60-Second Reset",
+        "3 Night Verses to Stop the Spiral": "3 Night Verses to Stop the Anxiety Spiral",
+        "How to Pray When Your Mind Won’t Slow Down": "Pray This When Your Mind Won't Slow Down",
+    }
+
+    if cleaned in replacements:
+        return replacements[cleaned][:95]
+
+    if not cleaned:
+        return f"Faith Short #{slot}"
+
+    cleaned = cleaned.replace("2 a.m.", "2 AM").replace("2 A.M.", "2 AM")
+    return cleaned[:95]
+
+
+def build_long_description(script_text: str, altered_content: bool = True) -> str:
+    cta = (
+        "\n\nIf this helped you, subscribe for more Bible-based encouragement, "
+        "clarity, and peace."
+    )
+
+    disclosure = ""
+    if altered_content:
+        disclosure = "\n\nDisclosure: This video includes AI-generated visuals."
+
+    return (script_text[:4000] + cta + disclosure)[:4900]
+
+
+def build_short_description(script_text: str, altered_content: bool = True) -> str:
+    cta = "\n\nSubscribe for more faith-based shorts and daily encouragement."
+
+    disclosure = ""
+    if altered_content:
+        disclosure = "\n\nDisclosure: This short includes AI-generated visuals."
+
+    return (script_text[:4000] + cta + disclosure)[:4900]
+
+
 def build_long_metadata(base_name: str, altered_content: bool = True) -> dict:
     script_path = find_long_script(base_name)
     script_text = read_text_file(script_path)
 
-    title = base_name.replace("_", " ").replace("-", " ").strip()
-    title = title[:95]
-
-    description = script_text[:4300]
-
-    if altered_content:
-        description += "\n\nDisclosure: This video includes AI-generated visuals."
-
     return {
-        "title": title,
-        "description": description,
-        "tags": ["faith", "encouragement", "christian", "bible", "hope"],
+        "title": build_long_title(base_name),
+        "description": build_long_description(script_text, altered_content=altered_content),
+        "tags": [
+            "faith",
+            "christian",
+            "bible",
+            "encouragement",
+            "prayer",
+            "jesus",
+            "hope",
+            "anxiety",
+            "hearing god",
+            "biblical truth",
+        ],
     }
 
 
@@ -61,16 +175,21 @@ def build_short_metadata(base_name: str, slot: int, altered_content: bool = True
     shorts = json.loads(shorts_path.read_text(encoding="utf-8"))
 
     short = shorts[slot - 1]
-    title = short.get("title", f"Short {slot}")[:95]
-    description = short.get("script", "")[:4300]
-
-    if altered_content:
-        description += "\n\nDisclosure: This short includes AI-generated visuals."
+    title = build_short_title(short.get("title", ""), slot)
+    description = build_short_description(short.get("script", ""), altered_content=altered_content)
 
     return {
         "title": title,
         "description": description,
-        "tags": ["shorts", "faith", "encouragement", "christian"],
+        "tags": [
+            "shorts",
+            "faith",
+            "christian",
+            "bible",
+            "encouragement",
+            "prayer",
+            "hope",
+        ],
     }
 
 
@@ -121,6 +240,7 @@ def set_thumbnail(service, video_id: str, thumbnail_path: Path) -> None:
         videoId=video_id,
         media_body=media,
     ).execute()
+
     print(f"Thumbnail set: {thumbnail_path}")
 
 
@@ -160,6 +280,7 @@ def publish_from_schedule() -> None:
                 "video_id": long_video_id,
                 "publish_at": long_publish_at,
                 "thumbnail_file": long_thumb.name,
+                "title": long_meta["title"],
                 "youtube_altered_content": long_altered,
             }
         )
@@ -195,9 +316,14 @@ def publish_from_schedule() -> None:
                 "video_id": short_video_id,
                 "publish_at": short_publish_at,
                 "thumbnail_file": short_thumb.name,
+                "title": meta["title"],
                 "youtube_altered_content": short_altered,
             }
         )
 
     publish_log_path.write_text(json.dumps(results, indent=2), encoding="utf-8")
     print(f"Saved publish log: {publish_log_path}")
+
+
+if __name__ == "__main__":
+    publish_from_schedule()
