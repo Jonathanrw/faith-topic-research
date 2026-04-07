@@ -52,11 +52,8 @@ jobs:
       - name: Generate scripts
         run: python -m src.generate_scripts
 
-      - name: Generate audio manifests
+      - name: Generate audio
         run: python -m src.generate_audio
-
-      - name: Generate TTS audio
-        run: python -m src.generate_tts
 
       - name: Generate backgrounds
         run: python -m src.background_generator
@@ -74,6 +71,8 @@ jobs:
         run: python -m src.check_publish_ready
 
       - name: Publish scheduled YouTube videos
+        env:
+          YOUTUBE_TOKEN_JSON: ${{ secrets.YOUTUBE_TOKEN_JSON }}
         run: python -m src.publish_youtube
 
       - name: Commit pipeline outputs
