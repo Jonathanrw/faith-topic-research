@@ -1,12 +1,13 @@
 from __future__ import annotations
 
 import os
-import re
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Optional, Tuple
 
 from PIL import Image, ImageDraw, ImageEnhance, ImageFilter, ImageFont, ImageOps
+
+from src.ctr_rules import build_thumbnail_subtitle, build_thumbnail_title
 
 
 THUMBNAIL_DIR = Path("content/thumbnails")
@@ -109,91 +110,6 @@ def add_soft_text_panel(base: Image.Image, panel_y: int, panel_h: int) -> Image.
 
     blurred = overlay.filter(ImageFilter.GaussianBlur(radius=18))
     return Image.alpha_composite(base.convert("RGBA"), blurred).convert("RGB")
-
-
-def strip_timestamp_prefix(text: str) -> str:
-    return re.sub(r"^\d{8}_\d{6}_", "", text).strip()
-
-
-def strip_suffixes(text: str) -> str:
-    text = re.sub(r"_short_\d+$", "", text)
-    text = re.sub(r"_long$", "", text)
-    return text.strip()
-
-
-def base_name_to_phrase(base_name: str) -> str:
-    text = strip_timestamp_prefix(base_name)
-    text = strip_suffixes(text)
-    text = text.replace("_", " ").replace("-", " ").strip()
-    text = re.sub(r"\s+", " ", text)
-    return text
-
-
-def title_case_phrase(text: str) -> str:
-    words = text.split()
-    result = []
-    for word in words:
-        lower = word.lower()
-        if lower == "am":
-            result.append("AM")
-        elif lower == "pm":
-            result.append("PM")
-        elif lower == "gods":
-            result.append("God's")
-        elif lower == "dont":
-            result.append("Don't")
-        elif lower == "cant":
-            result.append("Can't")
-        elif lower == "wont":
-            result.append("Won't")
-        elif lower == "youre":
-            result.append("You're")
-        elif lower == "whats":
-            result.append("What's")
-        else:
-            result.append(word.capitalize())
-    return " ".join(result)
-
-
-def build_ctr_title_from_base_name(base_name: str) -> str:
-    phrase = title_case_phrase(base_name_to_phrase(base_name))
-
-    rules = [
-        ("Why Your Prayers Feel Unanswered 7 Scriptural Reasons And Next Steps", "Why Prayers Feel Unanswered"),
-        ("3 Scriptures To Stop A 2 AM Anxiety Spiral", "Stop The 2 AM Spiral"),
-        ("Hearing God's Voice 3 Checks To Discern Promptings", "Hearing God's Voice?"),
-    ]
-
-    for original, replacement in rules:
-        if phrase == original:
-            return replacement
-
-    words = phrase.split()
-
-    if len(words) <= 5:
-        return phrase
-
-    if words[0].isdigit():
-        return " ".join(words[:6])
-
-    if words[0].lower() in {"why", "how", "what", "when"}:
-        return " ".join(words[:5])
-
-    return " ".join(words[:5])
-
-
-def build_ctr_subtitle_from_base_name(base_name: str) -> str:
-    phrase = base_name_to_phrase(base_name).lower()
-
-    if "anxiety" in phrase or "2 am" in phrase or "panic" in phrase or "fear" in phrase:
-        return "Do This Tonight"
-    if "prayer" in phrase or "prayers" in phrase:
-        return "Watch Before You Quit"
-    if "hearing gods voice" in phrase or "gods voice" in phrase:
-        return "3 Checks To Know"
-    if "discern" in phrase:
-        return "Before You Assume"
-    return "Watch This"
 
 
 def wrap_text_by_width(
@@ -423,8 +339,8 @@ def build_thumbnail_set(
 ) -> tuple[Path, Path]:
     ensure_thumbnail_dir()
 
-    title_text = title or build_ctr_title_from_base_name(base_name)
-    subtitle_text = subtitle or build_ctr_subtitle_from_base_name(base_name)
+    title_text = title or build_thumbnail_title(base_name)
+    subtitle_text = subtitle or build_thumbnail_subtitle(base_name)
 
     youtube_output = THUMBNAIL_DIR / f"{base_name}_youtube"
     vertical_output = THUMBNAIL_DIR / f"{base_name}_vertical"
