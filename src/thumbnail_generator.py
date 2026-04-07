@@ -8,6 +8,7 @@ from typing import Optional, Tuple
 from PIL import Image, ImageDraw, ImageEnhance, ImageFilter, ImageFont, ImageOps
 
 from src.ctr_rules import build_thumbnail_subtitle, build_thumbnail_title
+from src.thumbnail_style import DEFAULT_THUMBNAIL_STYLE
 
 
 THUMBNAIL_DIR = Path("content/thumbnails")
@@ -79,7 +80,7 @@ def open_image(path: Path) -> Image.Image:
     return Image.open(path).convert("RGB")
 
 
-def resize_crop_and_zoom(img: Image.Image, target_size: Tuple[int, int], zoom: float = 1.08) -> Image.Image:
+def resize_crop_and_zoom(img: Image.Image, target_size: Tuple[int, int], zoom: float) -> Image.Image:
     fitted = ImageOps.fit(
         img,
         target_size,
@@ -104,37 +105,37 @@ def resize_crop_and_zoom(img: Image.Image, target_size: Tuple[int, int], zoom: f
 
 
 def enhance_background(img: Image.Image) -> Image.Image:
-    img = ImageEnhance.Contrast(img).enhance(1.16)
-    img = ImageEnhance.Color(img).enhance(1.12)
-    img = ImageEnhance.Sharpness(img).enhance(1.12)
-    img = ImageEnhance.Brightness(img).enhance(1.04)
+    style = DEFAULT_THUMBNAIL_STYLE
+    img = ImageEnhance.Contrast(img).enhance(style.contrast)
+    img = ImageEnhance.Color(img).enhance(style.color)
+    img = ImageEnhance.Sharpness(img).enhance(style.sharpness)
+    img = ImageEnhance.Brightness(img).enhance(style.brightness)
     return img
 
 
 def add_vignette_and_panels(base: Image.Image, text_panel_top: int) -> Image.Image:
+    style = DEFAULT_THUMBNAIL_STYLE
+
     overlay = Image.new("RGBA", base.size, (0, 0, 0, 0))
     draw = ImageDraw.Draw(overlay)
 
-    # Top dark fade for badge area
     draw.rectangle(
         [(0, 0), (base.width, int(base.height * 0.24))],
-        fill=(0, 0, 0, 78),
+        fill=(0, 0, 0, style.top_shade_alpha),
     )
 
-    # Bottom dark fade for main text
     draw.rectangle(
         [(0, text_panel_top - 30), (base.width, base.height)],
-        fill=(0, 0, 0, 125),
+        fill=(0, 0, 0, style.bottom_shade_alpha),
     )
 
-    # Soft center emphasis
     draw.rounded_rectangle(
         [(32, text_panel_top), (base.width - 32, base.height - 28)],
         radius=36,
-        fill=(0, 0, 0, 62),
+        fill=(0, 0, 0, style.center_panel_alpha),
     )
 
-    blurred = overlay.filter(ImageFilter.GaussianBlur(radius=24))
+    blurred = overlay.filter(ImageFilter.GaussianBlur(radius=style.blur_radius))
     return Image.alpha_composite(base.convert("RGBA"), blurred).convert("RGB")
 
 
@@ -251,6 +252,7 @@ def draw_badge(
     text: str,
     font: ImageFont.FreeTypeFont,
 ) -> int:
+    style = DEFAULT_THUMBNAIL_STYLE
     badge = text.strip().upper()
     if not badge:
         return y
@@ -268,16 +270,16 @@ def draw_badge(
             (x + badge_w + (pad_x * 2), y + badge_h + (pad_y * 2)),
         ],
         radius=18,
-        fill=(220, 30, 30),
+        fill=style.badge_fill,
     )
 
     draw.text(
         (x + pad_x, y + pad_y - 1),
         badge,
         font=font,
-        fill=(255, 255, 255),
+        fill=style.badge_text_fill,
         stroke_width=1,
-        stroke_fill=(120, 0, 0),
+        stroke_fill=style.badge_stroke_fill,
     )
 
     return y + badge_h + (pad_y * 2)
@@ -292,8 +294,10 @@ def create_thumbnail(
     preset: ThumbnailPreset = YOUTUBE_PRESET,
     font_path: Optional[str] = None,
 ) -> Path:
+    style = DEFAULT_THUMBNAIL_STYLE
+
     base = open_image(background_path)
-    base = resize_crop_and_zoom(base, (preset.width, preset.height), zoom=1.08)
+    base = resize_crop_and_zoom(base, (preset.width, preset.height), zoom=style.zoom)
     base = enhance_background(base)
 
     text_panel_top = int(preset.height * 0.50) if preset.height < 1000 else int(preset.height * 0.56)
@@ -318,7 +322,7 @@ def create_thumbnail(
         max_lines=preset.max_title_lines,
         font_path=font_path,
         spacing=10,
-        stroke_width=7,
+        stroke_width=style.title_stroke_width,
     )
 
     title_y = text_panel_top + 28
@@ -329,7 +333,7 @@ def create_thumbnail(
         font=title_font,
         fill=(255, 255, 255),
         spacing=10,
-        stroke_width=7,
+        stroke_width=style.title_stroke_width,
         stroke_fill=(0, 0, 0),
     )
 
@@ -338,7 +342,7 @@ def create_thumbnail(
         wrapped_title,
         font=title_font,
         spacing=10,
-        stroke_width=7,
+        stroke_width=style.title_stroke_width,
     )
     current_y = title_bbox[3] + 18
 
@@ -353,16 +357,16 @@ def create_thumbnail(
             max_lines=preset.max_subtitle_lines,
             font_path=font_path,
             spacing=8,
-            stroke_width=4,
+            stroke_width=style.subtitle_stroke_width,
         )
 
         draw.multiline_text(
             (content_x, current_y),
             wrapped_subtitle,
             font=subtitle_font,
-            fill=(255, 235, 140),
+            fill=style.subtitle_fill,
             spacing=8,
-            stroke_width=4,
+            stroke_width=style.subtitle_stroke_width,
             stroke_fill=(0, 0, 0),
         )
 
