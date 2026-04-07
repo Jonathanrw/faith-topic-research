@@ -24,7 +24,6 @@ class ThumbnailPreset:
     title_font_size: int
     subtitle_font_size: int
     badge_font_size: int
-    panel_height_ratio: float
 
 
 YOUTUBE_PRESET = ThumbnailPreset(
@@ -32,12 +31,11 @@ YOUTUBE_PRESET = ThumbnailPreset(
     height=720,
     max_title_lines=3,
     max_subtitle_lines=2,
-    safe_margin_x=70,
-    safe_margin_y=50,
-    title_font_size=96,
-    subtitle_font_size=42,
+    safe_margin_x=72,
+    safe_margin_y=52,
+    title_font_size=102,
+    subtitle_font_size=44,
     badge_font_size=30,
-    panel_height_ratio=0.48,
 )
 
 VERTICAL_PRESET = ThumbnailPreset(
@@ -45,12 +43,11 @@ VERTICAL_PRESET = ThumbnailPreset(
     height=1920,
     max_title_lines=4,
     max_subtitle_lines=2,
-    safe_margin_x=70,
-    safe_margin_y=90,
-    title_font_size=110,
-    subtitle_font_size=54,
+    safe_margin_x=72,
+    safe_margin_y=96,
+    title_font_size=112,
+    subtitle_font_size=56,
     badge_font_size=34,
-    panel_height_ratio=0.42,
 )
 
 
@@ -82,33 +79,62 @@ def open_image(path: Path) -> Image.Image:
     return Image.open(path).convert("RGB")
 
 
-def resize_and_crop(img: Image.Image, target_size: Tuple[int, int]) -> Image.Image:
-    return ImageOps.fit(
+def resize_crop_and_zoom(img: Image.Image, target_size: Tuple[int, int], zoom: float = 1.08) -> Image.Image:
+    fitted = ImageOps.fit(
         img,
         target_size,
         method=Image.Resampling.LANCZOS,
         centering=(0.5, 0.5),
     )
 
+    if zoom <= 1.0:
+        return fitted
+
+    new_w = int(fitted.width * zoom)
+    new_h = int(fitted.height * zoom)
+
+    zoomed = fitted.resize((new_w, new_h), Image.Resampling.LANCZOS)
+
+    left = (new_w - fitted.width) // 2
+    top = (new_h - fitted.height) // 2
+    right = left + fitted.width
+    bottom = top + fitted.height
+
+    return zoomed.crop((left, top, right, bottom))
+
 
 def enhance_background(img: Image.Image) -> Image.Image:
-    img = ImageEnhance.Contrast(img).enhance(1.10)
-    img = ImageEnhance.Color(img).enhance(1.08)
-    img = ImageEnhance.Sharpness(img).enhance(1.10)
+    img = ImageEnhance.Contrast(img).enhance(1.16)
+    img = ImageEnhance.Color(img).enhance(1.12)
+    img = ImageEnhance.Sharpness(img).enhance(1.12)
+    img = ImageEnhance.Brightness(img).enhance(1.04)
     return img
 
 
-def add_soft_text_panel(base: Image.Image, panel_y: int, panel_h: int) -> Image.Image:
+def add_vignette_and_panels(base: Image.Image, text_panel_top: int) -> Image.Image:
     overlay = Image.new("RGBA", base.size, (0, 0, 0, 0))
     draw = ImageDraw.Draw(overlay)
 
-    draw.rounded_rectangle(
-        [(40, panel_y), (base.width - 40, panel_y + panel_h)],
-        radius=36,
-        fill=(0, 0, 0, 130),
+    # Top dark fade for badge area
+    draw.rectangle(
+        [(0, 0), (base.width, int(base.height * 0.24))],
+        fill=(0, 0, 0, 78),
     )
 
-    blurred = overlay.filter(ImageFilter.GaussianBlur(radius=18))
+    # Bottom dark fade for main text
+    draw.rectangle(
+        [(0, text_panel_top - 30), (base.width, base.height)],
+        fill=(0, 0, 0, 125),
+    )
+
+    # Soft center emphasis
+    draw.rounded_rectangle(
+        [(32, text_panel_top), (base.width - 32, base.height - 28)],
+        radius=36,
+        fill=(0, 0, 0, 62),
+    )
+
+    blurred = overlay.filter(ImageFilter.GaussianBlur(radius=24))
     return Image.alpha_composite(base.convert("RGBA"), blurred).convert("RGB")
 
 
@@ -218,6 +244,45 @@ def save_optimized_jpeg(img: Image.Image, out_path: Path, quality: int = 88) -> 
     return jpg_path
 
 
+def draw_badge(
+    draw: ImageDraw.ImageDraw,
+    x: int,
+    y: int,
+    text: str,
+    font: ImageFont.FreeTypeFont,
+) -> int:
+    badge = text.strip().upper()
+    if not badge:
+        return y
+
+    bbox = draw.textbbox((0, 0), badge, font=font, stroke_width=1)
+    badge_w = bbox[2] - bbox[0]
+    badge_h = bbox[3] - bbox[1]
+
+    pad_x = 18
+    pad_y = 10
+
+    draw.rounded_rectangle(
+        [
+            (x, y),
+            (x + badge_w + (pad_x * 2), y + badge_h + (pad_y * 2)),
+        ],
+        radius=18,
+        fill=(220, 30, 30),
+    )
+
+    draw.text(
+        (x + pad_x, y + pad_y - 1),
+        badge,
+        font=font,
+        fill=(255, 255, 255),
+        stroke_width=1,
+        stroke_fill=(120, 0, 0),
+    )
+
+    return y + badge_h + (pad_y * 2)
+
+
 def create_thumbnail(
     background_path: Path,
     output_path: Path,
@@ -228,77 +293,52 @@ def create_thumbnail(
     font_path: Optional[str] = None,
 ) -> Path:
     base = open_image(background_path)
-    base = resize_and_crop(base, (preset.width, preset.height))
+    base = resize_crop_and_zoom(base, (preset.width, preset.height), zoom=1.08)
     base = enhance_background(base)
 
-    panel_h = int(preset.height * preset.panel_height_ratio)
-    panel_y = preset.height - panel_h - preset.safe_margin_y
-    image = add_soft_text_panel(base, panel_y=panel_y, panel_h=panel_h)
+    text_panel_top = int(preset.height * 0.50) if preset.height < 1000 else int(preset.height * 0.56)
+    image = add_vignette_and_panels(base, text_panel_top=text_panel_top)
 
     draw = ImageDraw.Draw(image)
 
     content_x = preset.safe_margin_x
     content_w = preset.width - (preset.safe_margin_x * 2)
-    current_y = panel_y + 34
 
     badge_font = load_font(preset.badge_font_size, font_path)
-    badge = badge_text.strip().upper()
-
-    if badge:
-        badge_bbox = draw.textbbox((0, 0), badge, font=badge_font, stroke_width=1)
-        badge_w = badge_bbox[2] - badge_bbox[0]
-        badge_h = badge_bbox[3] - badge_bbox[1]
-
-        pad_x = 16
-        pad_y = 10
-
-        draw.rounded_rectangle(
-            [
-                (content_x, current_y),
-                (content_x + badge_w + (pad_x * 2), current_y + badge_h + (pad_y * 2)),
-            ],
-            radius=16,
-            fill=(200, 20, 20),
-        )
-        draw.text(
-            (content_x + pad_x, current_y + pad_y - 1),
-            badge,
-            font=badge_font,
-            fill=(255, 255, 255),
-            stroke_width=1,
-            stroke_fill=(120, 0, 0),
-        )
-        current_y += badge_h + (pad_y * 2) + 24
+    current_y = preset.safe_margin_y
+    current_y = draw_badge(draw, content_x, current_y, badge_text, badge_font) + 26
 
     title_font, wrapped_title = fit_multiline_text(
         draw=draw,
         text=title,
         start_size=preset.title_font_size,
-        min_size=max(44, preset.title_font_size - 42),
+        min_size=max(46, preset.title_font_size - 44),
         max_width=content_w,
-        max_height=int(panel_h * 0.58),
+        max_height=int(preset.height * 0.24),
         max_lines=preset.max_title_lines,
         font_path=font_path,
         spacing=10,
-        stroke_width=6,
+        stroke_width=7,
     )
 
+    title_y = text_panel_top + 28
+
     draw.multiline_text(
-        (content_x, current_y),
+        (content_x, title_y),
         wrapped_title,
         font=title_font,
         fill=(255, 255, 255),
         spacing=10,
-        stroke_width=6,
+        stroke_width=7,
         stroke_fill=(0, 0, 0),
     )
 
     title_bbox = draw.multiline_textbbox(
-        (content_x, current_y),
+        (content_x, title_y),
         wrapped_title,
         font=title_font,
         spacing=10,
-        stroke_width=6,
+        stroke_width=7,
     )
     current_y = title_bbox[3] + 18
 
@@ -309,7 +349,7 @@ def create_thumbnail(
             start_size=preset.subtitle_font_size,
             min_size=max(24, preset.subtitle_font_size - 18),
             max_width=content_w,
-            max_height=int(panel_h * 0.22),
+            max_height=int(preset.height * 0.10),
             max_lines=preset.max_subtitle_lines,
             font_path=font_path,
             spacing=8,
@@ -320,7 +360,7 @@ def create_thumbnail(
             (content_x, current_y),
             wrapped_subtitle,
             font=subtitle_font,
-            fill=(245, 245, 245),
+            fill=(255, 235, 140),
             spacing=8,
             stroke_width=4,
             stroke_fill=(0, 0, 0),
