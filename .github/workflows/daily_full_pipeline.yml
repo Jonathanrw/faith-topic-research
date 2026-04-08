@@ -92,9 +92,11 @@ jobs:
           YOUTUBE_TOKEN_JSON: ${{ secrets.YOUTUBE_TOKEN_JSON }}
         run: python -m src.publish_youtube
 
-      # 🔥 NEW STEP (growth mode)
       - name: Track performance
         run: python -m src.performance_tracker
+
+      - name: Extract winners
+        run: python -m src.winner_extractor
 
       - name: Commit pipeline outputs
         run: |
@@ -108,5 +110,5 @@ jobs:
           git add content/thumbnails/* || true
           git add content/schedules/* || true
           git add content/manifests/* || true
-          git diff --cached --quiet || git commit -m "Daily full pipeline run + performance tracking"
+          git diff --cached --quiet || git commit -m "Daily full pipeline run + growth tracking"
           git push
