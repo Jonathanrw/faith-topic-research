@@ -1,0 +1,49 @@
+{
+  "base_name": "20260405_193421_3-scriptures-to-stop-a-2-am-anxiety-spiral",
+  "timezone": "America/Chicago",
+  "schedule_date": "2026-04-07",
+  "youtube_long": {
+    "video_file": "20260405_193421_3-scriptures-to-stop-a-2-am-anxiety-spiral_long.mp4",
+    "publish_at": "2026-04-07T11:30:00-05:00",
+    "enabled": true,
+    "youtube_altered_content": true
+  },
+  "shorts": [
+    {
+      "slot": 1,
+      "video_file": "20260405_193421_3-scriptures-to-stop-a-2-am-anxiety-spiral_short_1.mp4",
+      "publish_at": "2026-04-07T15:30:00-05:00",
+      "platforms": [
+        "youtube_shorts",
+        "instagram_reels",
+        "facebook_reels",
+        "tiktok"
+      ],
+      "youtube_altered_content": true
+    },
+    {
+      "slot": 2,
+      "video_file": "20260405_193421_3-scriptures-to-stop-a-2-am-anxiety-spiral_short_2.mp4",
+      "publish_at": "2026-04-07T18:30:00-05:00",
+      "platforms": [
+        "youtube_shorts",
+        "instagram_reels",
+        "facebook_reels",
+        "tiktok"
+      ],
+      "youtube_altered_content": true
+    },
+    {
+      "slot": 3,
+      "video_file": "20260405_193421_3-scriptures-to-stop-a-2-am-anxiety-spiral_short_3.mp4",
+      "publish_at": "2026-04-07T20:30:00-05:00",
+      "platforms": [
+        "youtube_shorts",
+        "instagram_reels",
+        "facebook_reels",
+        "tiktok"
+      ],
+      "youtube_altered_content": true
+    }
+  ]
+}
