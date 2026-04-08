@@ -6,6 +6,7 @@ from src.ctr_rules import (
     build_long_youtube_title,
     build_short_youtube_title,
 )
+from src.description_injector import inject_cta_into_description
 
 
 VIDEO_DIR = Path("content/videos")
@@ -22,7 +23,7 @@ def load_shorts_json(base_name: str) -> list[dict]:
     return json.loads(shorts_path.read_text(encoding="utf-8"))
 
 
-def build_long_description(script_text: str, altered_content: bool = True) -> str:
+def build_long_description(title: str, script_text: str, altered_content: bool = True) -> str:
     profile = DEFAULT_CHANNEL_PROFILE
 
     description = script_text[:4000]
@@ -30,19 +31,31 @@ def build_long_description(script_text: str, altered_content: bool = True) -> st
     if profile.long_cta:
         description += f"\n\n{profile.long_cta}"
 
+    description = inject_cta_into_description(
+        base_description=description,
+        title=title,
+        include_cta=True,
+    )
+
     if altered_content and profile.ai_visual_disclosure_long:
         description += f"\n\n{profile.ai_visual_disclosure_long}"
 
     return description[:4900]
 
 
-def build_short_description(script_text: str, altered_content: bool = True) -> str:
+def build_short_description(title: str, script_text: str, altered_content: bool = True) -> str:
     profile = DEFAULT_CHANNEL_PROFILE
 
     description = script_text[:4000]
 
     if profile.short_cta:
         description += f"\n\n{profile.short_cta}"
+
+    description = inject_cta_into_description(
+        base_description=description,
+        title=title,
+        include_cta=True,
+    )
 
     if altered_content and profile.ai_visual_disclosure_short:
         description += f"\n\n{profile.ai_visual_disclosure_short}"
@@ -58,14 +71,15 @@ def get_long_package(base_name: str, altered_content: bool = True) -> dict:
     thumbnail_path = THUMBNAIL_DIR / f"{base_name}_youtube.jpg"
 
     script_text = read_text_file(script_path)
+    title = build_long_youtube_title(base_name)
 
     return {
         "type": "youtube_long",
         "base_name": base_name,
         "video_path": video_path,
         "thumbnail_path": thumbnail_path,
-        "title": build_long_youtube_title(base_name),
-        "description": build_long_description(script_text, altered_content=altered_content),
+        "title": title,
+        "description": build_long_description(title, script_text, altered_content=altered_content),
         "tags": list(profile.long_tags),
         "altered_content": altered_content,
     }
@@ -82,6 +96,7 @@ def get_short_package(base_name: str, slot: int, altered_content: bool = True) -
 
     short_title = short.get("title", "")
     short_script = short.get("script", "")
+    title = build_short_youtube_title(short_title, slot)
 
     return {
         "type": "youtube_short",
@@ -89,8 +104,8 @@ def get_short_package(base_name: str, slot: int, altered_content: bool = True) -
         "slot": slot,
         "video_path": video_path,
         "thumbnail_path": thumbnail_path,
-        "title": build_short_youtube_title(short_title, slot),
-        "description": build_short_description(short_script, altered_content=altered_content),
+        "title": title,
+        "description": build_short_description(title, short_script, altered_content=altered_content),
         "tags": list(profile.short_tags),
         "altered_content": altered_content,
     }
