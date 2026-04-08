@@ -2,6 +2,7 @@ import json
 from pathlib import Path
 
 from googleapiclient.discovery import build
+from googleapiclient.errors import HttpError, ResumableUploadError
 from googleapiclient.http import MediaFileUpload
 
 from src.content_packager import get_publish_packages_from_schedule
@@ -23,6 +24,11 @@ def load_latest_schedule() -> dict:
     if not files:
         raise FileNotFoundError("No schedule file found in content/schedules")
     return json.loads(files[0].read_text(encoding="utf-8"))
+
+
+def is_quota_error(exc: Exception) -> bool:
+    text = str(exc)
+    return "quotaExceeded" in text or "exceeded your quota" in text.lower()
 
 
 def upload_video(
@@ -84,6 +90,7 @@ def publish_from_schedule() -> None:
     results = {
         "base_name": base_name,
         "uploads": [],
+        "errors": [],
     }
 
     packages = get_publish_packages_from_schedule(schedule)
@@ -100,31 +107,71 @@ def publish_from_schedule() -> None:
     for package in packages:
         video_path = package["video_path"]
 
-        video_id = upload_video(
-            service=service,
-            video_path=video_path,
-            title=package["title"],
-            description=package["description"],
-            tags=package["tags"],
-            publish_at_iso=package["publish_at"],
-        )
+        try:
+            video_id = upload_video(
+                service=service,
+                video_path=video_path,
+                title=package["title"],
+                description=package["description"],
+                tags=package["tags"],
+                publish_at_iso=package["publish_at"],
+            )
 
-        set_thumbnail(service, video_id, package["thumbnail_path"])
+            set_thumbnail(service, video_id, package["thumbnail_path"])
 
-        log_entry = {
-            "type": package["type"],
-            "video_file": package["video_file"],
-            "video_id": video_id,
-            "publish_at": package["publish_at"],
-            "thumbnail_file": package["thumbnail_path"].name,
-            "title": package["title"],
-            "youtube_altered_content": package["altered_content"],
-        }
+            log_entry = {
+                "type": package["type"],
+                "video_file": package["video_file"],
+                "video_id": video_id,
+                "publish_at": package["publish_at"],
+                "thumbnail_file": package["thumbnail_path"].name,
+                "title": package["title"],
+                "youtube_altered_content": package["altered_content"],
+                "status": "published",
+            }
 
-        if "slot" in package:
-            log_entry["slot"] = package["slot"]
+            if "slot" in package:
+                log_entry["slot"] = package["slot"]
 
-        results["uploads"].append(log_entry)
+            results["uploads"].append(log_entry)
+
+        except (HttpError, ResumableUploadError) as exc:
+            error_entry = {
+                "type": package["type"],
+                "video_file": package["video_file"],
+                "title": package["title"],
+                "publish_at": package["publish_at"],
+                "error": str(exc),
+            }
+
+            if "slot" in package:
+                error_entry["slot"] = package["slot"]
+
+            if is_quota_error(exc):
+                error_entry["status"] = "quota_exceeded"
+                results["errors"].append(error_entry)
+                print("YouTube quota exceeded. Stopping further uploads for this run.")
+                break
+
+            error_entry["status"] = "upload_failed"
+            results["errors"].append(error_entry)
+            print(f"Upload failed for {package['video_file']}: {exc}")
+
+        except Exception as exc:
+            error_entry = {
+                "type": package["type"],
+                "video_file": package["video_file"],
+                "title": package["title"],
+                "publish_at": package["publish_at"],
+                "status": "unexpected_error",
+                "error": str(exc),
+            }
+
+            if "slot" in package:
+                error_entry["slot"] = package["slot"]
+
+            results["errors"].append(error_entry)
+            print(f"Unexpected upload error for {package['video_file']}: {exc}")
 
     publish_log_path.write_text(json.dumps(results, indent=2), encoding="utf-8")
 
@@ -133,6 +180,11 @@ def publish_from_schedule() -> None:
 
     print(f"Saved publish log: {publish_log_path}")
     print(f"Saved manifest: {manifest_path}")
+
+    if results["errors"]:
+        print("Publish completed with errors:")
+        for item in results["errors"]:
+            print(f" - {item['status']}: {item['video_file']}")
 
 
 if __name__ == "__main__":
