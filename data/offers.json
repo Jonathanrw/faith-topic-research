@@ -1,0 +1,18 @@
+[
+  {
+    "id": "free_anxiety_prayer",
+    "title": "Night Anxiety Prayer Guide",
+    "type": "lead_magnet",
+    "link": "https://example.com/prayer",
+    "topics": ["anxiety", "fear", "panic", "worry"],
+    "hooks": ["2am", "night anxiety", "can't sleep"]
+  },
+  {
+    "id": "scripture_pack",
+    "title": "30 Scriptures for Anxiety",
+    "type": "paid",
+    "link": "https://example.com/scriptures",
+    "topics": ["anxiety", "scripture", "peace"],
+    "hooks": ["verses", "scriptures", "bible"]
+  }
+]
