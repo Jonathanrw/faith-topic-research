@@ -1,0 +1,30 @@
+[
+  {
+    "id": "night_anxiety_prayer_guide",
+    "title": "Night Anxiety Prayer Guide",
+    "type": "lead_magnet",
+    "format": "pdf",
+    "price": 0,
+    "topic": "anxiety",
+    "audience": "christian adults struggling with fear, panic, and late-night anxiety",
+    "promise": "help calm anxious thoughts at night with prayer and scripture",
+    "description": "A short faith-based guide with calming prayers, scriptures, and reflection prompts for people dealing with anxiety at night.",
+    "cta": "Download the free Night Anxiety Prayer Guide",
+    "delivery_link": "https://example.com/night-anxiety-prayer-guide",
+    "source_offer_id": "free_anxiety_prayer"
+  },
+  {
+    "id": "30_scriptures_for_anxiety",
+    "title": "30 Scriptures for Anxiety",
+    "type": "paid_product",
+    "format": "pdf",
+    "price": 9,
+    "topic": "anxiety",
+    "audience": "christians looking for biblical encouragement and peace",
+    "promise": "give people a scripture-based resource they can return to whenever anxiety hits",
+    "description": "A curated scripture pack designed to help people fight fear, worry, and mental overload with God’s Word.",
+    "cta": "Get the 30 Scriptures for Anxiety pack",
+    "delivery_link": "https://example.com/30-scriptures-for-anxiety",
+    "source_offer_id": "scripture_pack"
+  }
+]
