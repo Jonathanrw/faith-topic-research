@@ -95,6 +95,9 @@ jobs:
       - name: Generate Offer Usage Report
         run: python -m src.offer_usage_report
 
+      - name: Generate Monetization Summary
+        run: python -m src.monetization_summary
+
       - name: Publish to YouTube
         if: env.PIPELINE_LIVE == 'true'
         env:
@@ -119,5 +122,5 @@ jobs:
           git add content/thumbnails/* || true
           git add content/schedules/* || true
           git add content/manifests/* || true
-          git diff --cached --quiet || git commit -m "Daily full pipeline run (staging mode + monetization report)"
+          git diff --cached --quiet || git commit -m "Daily full pipeline run (staging mode + monetization system)"
           git push
