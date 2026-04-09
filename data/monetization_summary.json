@@ -1,0 +1,27 @@
+{
+  "entry_count": 4,
+  "top_topics": [
+    {
+      "topic": "anxiety",
+      "count": 2
+    },
+    {
+      "topic": "generic",
+      "count": 1
+    },
+    {
+      "topic": "prayer",
+      "count": 1
+    }
+  ],
+  "top_offers": [
+    {
+      "offer_id": "free_anxiety_prayer",
+      "count": 4
+    },
+    {
+      "offer_id": "scripture_pack",
+      "count": 2
+    }
+  ]
+}
