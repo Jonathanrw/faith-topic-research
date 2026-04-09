@@ -46,9 +46,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install --no-cache-dir -r requirements.txt
 
-      # -------------------------------
-      # SAFE RUNNER (self-healing)
-      # -------------------------------
       - name: Create safe runner
         run: |
           cat << 'EOF' > safe_run.sh
@@ -71,9 +68,6 @@ jobs:
           EOF
           chmod +x safe_run.sh
 
-      # -------------------------------
-      # PIPELINE STEPS
-      # -------------------------------
       - name: Topic Research
         run: ./safe_run.sh "python -m src.main"
 
@@ -92,36 +86,27 @@ jobs:
       - name: Generate Schedule
         run: ./safe_run.sh "python -m src.generate_schedule"
 
-      # -------------------------------
-      # HARD CHECKS (must pass)
-      # -------------------------------
       - name: Asset Report
         run: python -m src.missing_asset_report
 
       - name: Publish Readiness Check
         run: python -m src.check_publish_ready
 
-      # -------------------------------
-      # PUBLISH (STAGING SAFE)
-      # -------------------------------
+      - name: Generate Offer Usage Report
+        run: python -m src.offer_usage_report
+
       - name: Publish to YouTube
         if: env.PIPELINE_LIVE == 'true'
         env:
           YOUTUBE_TOKEN_JSON: ${{ secrets.YOUTUBE_TOKEN_JSON }}
         run: python -m src.publish_youtube
 
-      # -------------------------------
-      # GROWTH MODE
-      # -------------------------------
       - name: Track performance
         run: python -m src.performance_tracker
 
       - name: Extract winners
         run: python -m src.winner_extractor
 
-      # -------------------------------
-      # SAVE OUTPUTS
-      # -------------------------------
       - name: Commit pipeline outputs
         run: |
           git config user.name "github-actions[bot]"
@@ -134,5 +119,5 @@ jobs:
           git add content/thumbnails/* || true
           git add content/schedules/* || true
           git add content/manifests/* || true
-          git diff --cached --quiet || git commit -m "Daily full pipeline run (staging mode)"
+          git diff --cached --quiet || git commit -m "Daily full pipeline run (staging mode + monetization report)"
           git push
