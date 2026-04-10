@@ -83,6 +83,12 @@ jobs:
       - name: Render Videos
         run: ./safe_run.sh "python -m src.render_videos"
 
+      - name: Generate Products
+        run: ./safe_run.sh "python -m src.product_generator"
+
+      - name: Generate Product Catalog Report
+        run: python -m src.product_catalog_report
+
       - name: Generate Schedule
         run: ./safe_run.sh "python -m src.generate_schedule"
 
@@ -120,7 +126,8 @@ jobs:
           git add content/backgrounds/* || true
           git add content/videos/* || true
           git add content/thumbnails/* || true
+          git add content/products/* || true
           git add content/schedules/* || true
           git add content/manifests/* || true
-          git diff --cached --quiet || git commit -m "Daily full pipeline run (staging mode + monetization system)"
+          git diff --cached --quiet || git commit -m "Daily full pipeline run (staging mode + products + monetization)"
           git push
