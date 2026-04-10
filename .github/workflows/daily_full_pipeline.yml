@@ -92,6 +92,9 @@ jobs:
       - name: Generate Landing Pages
         run: ./safe_run.sh "python -m src.landing_page_generator"
 
+      - name: Generate Funnel Report
+        run: python -m src.funnel_generator
+
       - name: Generate Schedule
         run: ./safe_run.sh "python -m src.generate_schedule"
 
@@ -133,5 +136,5 @@ jobs:
           git add content/landing_pages/* || true
           git add content/schedules/* || true
           git add content/manifests/* || true
-          git diff --cached --quiet || git commit -m "Daily full pipeline run (staging mode + products + landing pages + monetization)"
+          git diff --cached --quiet || git commit -m "Daily full pipeline run (staging mode + products + landing pages + funnels + monetization)"
           git push
