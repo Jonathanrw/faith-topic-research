@@ -119,13 +119,16 @@ jobs:
           YOUTUBE_TOKEN_JSON: ${{ secrets.YOUTUBE_TOKEN_JSON }}
         run: python -m src.publish_youtube
 
-      - name: Track performance
+      - name: Track Performance
         run: python -m src.performance_tracker
 
-      - name: Extract winners
+      - name: Extract Winners
         run: python -m src.winner_extractor
 
-      - name: Commit pipeline outputs
+      - name: Run Master System Report
+        run: python -m src.master_system_report
+
+      - name: Commit Pipeline Outputs
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -139,5 +142,5 @@ jobs:
           git add content/landing_pages/* || true
           git add content/schedules/* || true
           git add content/manifests/* || true
-          git diff --cached --quiet || git commit -m "Daily full pipeline run (staging mode + monetization + revenue readiness)"
+          git diff --cached --quiet || git commit -m "Daily full pipeline run (staging mode + master system report)"
           git push
