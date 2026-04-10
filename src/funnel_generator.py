@@ -1,6 +1,7 @@
 import json
 from pathlib import Path
 
+from src.link_manager import get_product_link
 from src.product_loader import load_products
 
 
@@ -20,18 +21,20 @@ def find_latest_landing_page(product_id: str) -> str:
 
 
 def build_funnel_entry(product: dict) -> dict:
+    product_id = product.get("id", "")
     price = product.get("price", 0)
     funnel_type = "lead_capture" if price == 0 else "direct_offer"
+    delivery_link = get_product_link(product_id)
 
     return {
-        "product_id": product.get("id", ""),
+        "product_id": product_id,
         "title": product.get("title", ""),
         "topic": product.get("topic", ""),
         "type": product.get("type", ""),
         "price": price,
         "cta": product.get("cta", ""),
-        "delivery_link": product.get("delivery_link", ""),
-        "landing_page_path": find_latest_landing_page(product.get("id", "")),
+        "delivery_link": delivery_link,
+        "landing_page_path": find_latest_landing_page(product_id),
         "funnel_type": funnel_type,
         "entry_point": "youtube_description",
         "flow": [
