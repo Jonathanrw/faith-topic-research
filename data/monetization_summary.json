@@ -17,11 +17,17 @@
   "top_offers": [
     {
       "offer_id": "free_anxiety_prayer",
-      "count": 4
+      "count": 4,
+      "title": "Night Anxiety Prayer Guide",
+      "type": "lead_magnet",
+      "link": "https://example.com/prayer"
     },
     {
       "offer_id": "scripture_pack",
-      "count": 2
+      "count": 2,
+      "title": "30 Scriptures for Anxiety",
+      "type": "paid",
+      "link": "https://example.com/scriptures"
     }
   ]
 }

@@ -1,0 +1,41 @@
+{
+  "product_count": 2,
+  "funnels": [
+    {
+      "product_id": "night_anxiety_prayer_guide",
+      "title": "Night Anxiety Prayer Guide",
+      "topic": "anxiety",
+      "type": "lead_magnet",
+      "price": 0,
+      "cta": "Download the free Night Anxiety Prayer Guide",
+      "delivery_link": "https://example.com/night-anxiety-prayer-guide",
+      "landing_page_path": "",
+      "funnel_type": "lead_capture",
+      "entry_point": "youtube_description",
+      "flow": [
+        "video",
+        "description_cta",
+        "landing_page",
+        "delivery_link"
+      ]
+    },
+    {
+      "product_id": "30_scriptures_for_anxiety",
+      "title": "30 Scriptures for Anxiety",
+      "topic": "anxiety",
+      "type": "paid_product",
+      "price": 9,
+      "cta": "Get the 30 Scriptures for Anxiety pack",
+      "delivery_link": "https://example.com/30-scriptures-for-anxiety",
+      "landing_page_path": "",
+      "funnel_type": "direct_offer",
+      "entry_point": "youtube_description",
+      "flow": [
+        "video",
+        "description_cta",
+        "landing_page",
+        "checkout_or_delivery_link"
+      ]
+    }
+  ]
+}
