@@ -6,6 +6,7 @@ BUSINESS_STATUS_PATH = Path("data/business_status_report.json")
 REVENUE_READINESS_PATH = Path("data/revenue_readiness_report.json")
 MONETIZATION_SUMMARY_PATH = Path("data/monetization_summary.json")
 WINNERS_PATH = Path("data/winner_summary.json")
+LIVE_LINK_AUDIT_PATH = Path("data/live_link_audit.json")
 OUTPUT_PATH = Path("data/prelaunch_check.json")
 
 
@@ -55,6 +56,20 @@ def main() -> None:
         {"video_count": 0, "top_topics": [], "top_hooks": [], "winners": []},
     )
 
+    live_link_audit = load_json(
+        LIVE_LINK_AUDIT_PATH,
+        {
+            "offer_count": 0,
+            "product_count": 0,
+            "ready_offer_count": 0,
+            "ready_product_count": 0,
+            "all_offers_live_ready": False,
+            "all_products_live_ready": False,
+            "offers": [],
+            "products": [],
+        },
+    )
+
     checks = {
         "has_winner_data": winners.get("video_count", 0) > 0,
         "has_offer_usage_data": monetization_summary.get("entry_count", 0) > 0,
@@ -63,6 +78,8 @@ def main() -> None:
         "has_offers": revenue_readiness.get("offer_count", 0) > 0,
         "has_funnels": revenue_readiness.get("funnel_count", 0) > 0,
         "all_products_ready": revenue_readiness.get("all_products_ready", False),
+        "all_offers_live_ready": live_link_audit.get("all_offers_live_ready", False),
+        "all_products_live_ready": live_link_audit.get("all_products_live_ready", False),
     }
 
     recommended_mode = "live" if all(checks.values()) else "staging"
@@ -82,6 +99,10 @@ def main() -> None:
         blockers.append("No funnels found.")
     if not checks["all_products_ready"]:
         blockers.append("Not all products are ready for live sales.")
+    if not checks["all_offers_live_ready"]:
+        blockers.append("Not all offer links are live-ready.")
+    if not checks["all_products_live_ready"]:
+        blockers.append("Not all product delivery links are live-ready.")
 
     payload = {
         "recommended_mode": recommended_mode,
@@ -92,6 +113,8 @@ def main() -> None:
             "offer_usage_entry_count": business_status.get("monetization", {}).get("offer_usage_entry_count", 0),
             "ready_product_count": business_status.get("revenue_readiness", {}).get("ready_product_count", 0),
             "product_count": business_status.get("revenue_readiness", {}).get("product_count", 0),
+            "ready_offer_link_count": live_link_audit.get("ready_offer_count", 0),
+            "ready_product_link_count": live_link_audit.get("ready_product_count", 0),
         },
     }
 
