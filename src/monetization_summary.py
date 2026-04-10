@@ -2,6 +2,8 @@ import json
 from collections import Counter
 from pathlib import Path
 
+from src.link_manager import get_offer_link
+
 
 REPORT_PATH = Path("data/offer_usage_report.json")
 SUMMARY_PATH = Path("data/monetization_summary.json")
@@ -19,6 +21,7 @@ def main() -> None:
 
     offer_counter = Counter()
     topic_counter = Counter()
+    offer_details = {}
 
     for entry in entries:
         topic = entry.get("topic", "")
@@ -28,6 +31,11 @@ def main() -> None:
             offer_id = offer.get("id", "")
             if offer_id:
                 offer_counter[offer_id] += 1
+                offer_details[offer_id] = {
+                    "title": offer.get("title", ""),
+                    "type": offer.get("type", ""),
+                    "link": get_offer_link(offer_id),
+                }
 
     summary = {
         "entry_count": len(entries),
@@ -36,7 +44,13 @@ def main() -> None:
             for topic, count in topic_counter.most_common(5)
         ],
         "top_offers": [
-            {"offer_id": offer_id, "count": count}
+            {
+                "offer_id": offer_id,
+                "count": count,
+                "title": offer_details.get(offer_id, {}).get("title", ""),
+                "type": offer_details.get(offer_id, {}).get("type", ""),
+                "link": offer_details.get(offer_id, {}).get("link", ""),
+            }
             for offer_id, count in offer_counter.most_common(5)
         ],
     }
