@@ -1,10 +1,10 @@
-import json
 from datetime import datetime
 from pathlib import Path
 
 from openai import OpenAI
 
 from src.config import OPENAI_API_KEY, OPENAI_MODEL
+from src.link_manager import get_product_link
 from src.product_loader import load_products
 
 
@@ -19,6 +19,9 @@ def ensure_output_dir() -> None:
 
 
 def build_prompt(product: dict) -> str:
+    product_id = product.get("id", "")
+    delivery_link = get_product_link(product_id)
+
     return f"""
 Create a simple high-converting landing page in markdown format for this digital product.
 
@@ -58,7 +61,7 @@ Requirements:
 - Do not include HTML
 - Do not include fake testimonials
 - Mention the delivery link placeholder exactly like this:
-  DELIVERY LINK: {product.get("delivery_link")}
+  DELIVERY LINK: {delivery_link}
 
 Return only the finished markdown page.
 """
