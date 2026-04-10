@@ -1,6 +1,7 @@
 import json
 from pathlib import Path
 
+from src.link_manager import get_product_link
 from src.product_loader import load_products
 
 
@@ -21,7 +22,7 @@ def main() -> None:
                 "price": product.get("price", 0),
                 "topic": product.get("topic", ""),
                 "cta": product.get("cta", ""),
-                "delivery_link": product.get("delivery_link", ""),
+                "delivery_link": get_product_link(product.get("id", "")),
                 "source_offer_id": product.get("source_offer_id", ""),
             }
             for product in products
