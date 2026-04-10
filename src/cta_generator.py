@@ -1,3 +1,4 @@
+from src.link_manager import get_offer_link
 from src.offer_selector import select_best_offers
 
 
@@ -21,9 +22,10 @@ def classify_topic(title: str) -> str:
 
 
 def build_offer_block(offer: dict) -> str:
+    offer_id = offer.get("id", "").strip()
     offer_type = offer.get("type", "")
     title = offer.get("title", "").strip()
-    link = offer.get("link", "").strip()
+    link = get_offer_link(offer_id)
 
     if not title or not link:
         return ""
