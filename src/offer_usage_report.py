@@ -2,6 +2,7 @@ import json
 from pathlib import Path
 
 from src.content_packager import get_publish_packages_from_schedule
+from src.link_manager import get_offer_link
 from src.offer_selector import select_best_offers
 
 
@@ -59,7 +60,7 @@ def main() -> None:
                         "id": offer.get("id", ""),
                         "title": offer.get("title", ""),
                         "type": offer.get("type", ""),
-                        "link": offer.get("link", ""),
+                        "link": get_offer_link(offer.get("id", "")),
                     }
                     for offer in offers
                 ],
