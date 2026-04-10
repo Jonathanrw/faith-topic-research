@@ -1,6 +1,7 @@
 import json
 from pathlib import Path
 
+from src.link_manager import get_offer_link, get_product_link
 from src.product_loader import load_products
 
 
@@ -20,29 +21,33 @@ def main() -> None:
     offers = load_json(OFFERS_PATH, [])
     funnel_report = load_json(FUNNEL_REPORT_PATH, {"funnels": []})
 
-    product_ids = {product.get("id", "") for product in products}
     offer_ids = {offer.get("id", "") for offer in offers}
 
     readiness_checks = []
 
     for product in products:
+        product_id = product.get("id", "")
         source_offer_id = product.get("source_offer_id", "")
-        delivery_link = product.get("delivery_link", "")
+        offer_link = get_offer_link(source_offer_id) if source_offer_id else ""
+        delivery_link = get_product_link(product_id)
+
         landing_page_exists = any(
-            funnel.get("product_id", "") == product.get("id", "")
+            funnel.get("product_id", "") == product_id
             and bool(funnel.get("landing_page_path", ""))
             for funnel in funnel_report.get("funnels", [])
         )
 
         readiness_checks.append(
             {
-                "product_id": product.get("id", ""),
+                "product_id": product_id,
                 "title": product.get("title", ""),
                 "has_source_offer": source_offer_id in offer_ids if source_offer_id else False,
+                "has_offer_link": bool(offer_link.strip()),
                 "has_delivery_link": bool(delivery_link.strip()),
                 "has_landing_page": landing_page_exists,
                 "ready_for_live_sales": (
                     (source_offer_id in offer_ids if source_offer_id else False)
+                    and bool(offer_link.strip())
                     and bool(delivery_link.strip())
                     and landing_page_exists
                 ),
