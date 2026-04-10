@@ -89,6 +89,9 @@ jobs:
       - name: Generate Product Catalog Report
         run: python -m src.product_catalog_report
 
+      - name: Generate Landing Pages
+        run: ./safe_run.sh "python -m src.landing_page_generator"
+
       - name: Generate Schedule
         run: ./safe_run.sh "python -m src.generate_schedule"
 
@@ -127,7 +130,8 @@ jobs:
           git add content/videos/* || true
           git add content/thumbnails/* || true
           git add content/products/* || true
+          git add content/landing_pages/* || true
           git add content/schedules/* || true
           git add content/manifests/* || true
-          git diff --cached --quiet || git commit -m "Daily full pipeline run (staging mode + products + monetization)"
+          git diff --cached --quiet || git commit -m "Daily full pipeline run (staging mode + products + landing pages + monetization)"
           git push
