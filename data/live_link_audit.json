@@ -1,0 +1,36 @@
+{
+  "offer_count": 2,
+  "product_count": 2,
+  "ready_offer_count": 0,
+  "ready_product_count": 0,
+  "all_offers_live_ready": false,
+  "all_products_live_ready": false,
+  "offers": [
+    {
+      "id": "free_anxiety_prayer",
+      "title": "Night Anxiety Prayer Guide",
+      "link": "https://example.com/prayer",
+      "has_live_link": false
+    },
+    {
+      "id": "scripture_pack",
+      "title": "30 Scriptures for Anxiety",
+      "link": "https://example.com/scriptures",
+      "has_live_link": false
+    }
+  ],
+  "products": [
+    {
+      "id": "night_anxiety_prayer_guide",
+      "title": "Night Anxiety Prayer Guide",
+      "delivery_link": "https://example.com/night-anxiety-prayer-guide",
+      "has_live_link": false
+    },
+    {
+      "id": "30_scriptures_for_anxiety",
+      "title": "30 Scriptures for Anxiety",
+      "delivery_link": "https://example.com/30-scriptures-for-anxiety",
+      "has_live_link": false
+    }
+  ]
+}

@@ -1,0 +1,187 @@
+{
+  "recommended_mode": "staging",
+  "blockers": [
+    "Not enough winner data yet.",
+    "Not all products are ready for live sales.",
+    "Not all offer links are live-ready.",
+    "Not all product delivery links are live-ready."
+  ],
+  "growth_snapshot": {
+    "winner_video_count": 0,
+    "top_topics": [],
+    "top_hooks": []
+  },
+  "monetization_snapshot": {
+    "top_offers": [
+      {
+        "offer_id": "free_anxiety_prayer",
+        "count": 4,
+        "title": "Night Anxiety Prayer Guide",
+        "type": "lead_magnet",
+        "link": "https://example.com/prayer"
+      },
+      {
+        "offer_id": "scripture_pack",
+        "count": 2,
+        "title": "30 Scriptures for Anxiety",
+        "type": "paid",
+        "link": "https://example.com/scriptures"
+      }
+    ],
+    "top_topics": [
+      {
+        "topic": "anxiety",
+        "count": 2
+      },
+      {
+        "topic": "generic",
+        "count": 1
+      },
+      {
+        "topic": "prayer",
+        "count": 1
+      }
+    ],
+    "offer_usage_entry_count": 4
+  },
+  "live_link_snapshot": {
+    "offer_count": 2,
+    "product_count": 2,
+    "ready_offer_count": 0,
+    "ready_product_count": 0,
+    "all_offers_live_ready": false,
+    "all_products_live_ready": false
+  },
+  "products": [
+    {
+      "id": "night_anxiety_prayer_guide",
+      "title": "Night Anxiety Prayer Guide",
+      "type": "lead_magnet",
+      "format": "pdf",
+      "price": 0,
+      "topic": "anxiety",
+      "cta": "Download the free Night Anxiety Prayer Guide",
+      "delivery_link": "https://example.com/night-anxiety-prayer-guide",
+      "source_offer_id": "free_anxiety_prayer"
+    },
+    {
+      "id": "30_scriptures_for_anxiety",
+      "title": "30 Scriptures for Anxiety",
+      "type": "paid_product",
+      "format": "pdf",
+      "price": 9,
+      "topic": "anxiety",
+      "cta": "Get the 30 Scriptures for Anxiety pack",
+      "delivery_link": "https://example.com/30-scriptures-for-anxiety",
+      "source_offer_id": "scripture_pack"
+    }
+  ],
+  "funnels": [
+    {
+      "product_id": "night_anxiety_prayer_guide",
+      "title": "Night Anxiety Prayer Guide",
+      "topic": "anxiety",
+      "type": "lead_magnet",
+      "price": 0,
+      "cta": "Download the free Night Anxiety Prayer Guide",
+      "delivery_link": "https://example.com/night-anxiety-prayer-guide",
+      "landing_page_path": "",
+      "funnel_type": "lead_capture",
+      "entry_point": "youtube_description",
+      "flow": [
+        "video",
+        "description_cta",
+        "landing_page",
+        "delivery_link"
+      ]
+    },
+    {
+      "product_id": "30_scriptures_for_anxiety",
+      "title": "30 Scriptures for Anxiety",
+      "topic": "anxiety",
+      "type": "paid_product",
+      "price": 9,
+      "cta": "Get the 30 Scriptures for Anxiety pack",
+      "delivery_link": "https://example.com/30-scriptures-for-anxiety",
+      "landing_page_path": "",
+      "funnel_type": "direct_offer",
+      "entry_point": "youtube_description",
+      "flow": [
+        "video",
+        "description_cta",
+        "landing_page",
+        "checkout_or_delivery_link"
+      ]
+    }
+  ],
+  "business_status": {
+    "growth": {
+      "winner_video_count": 0,
+      "top_topics": [],
+      "top_hooks": []
+    },
+    "monetization": {
+      "offer_usage_entry_count": 4,
+      "top_offers": [
+        {
+          "offer_id": "free_anxiety_prayer",
+          "count": 4,
+          "title": "Night Anxiety Prayer Guide",
+          "type": "lead_magnet",
+          "link": "https://example.com/prayer"
+        },
+        {
+          "offer_id": "scripture_pack",
+          "count": 2,
+          "title": "30 Scriptures for Anxiety",
+          "type": "paid",
+          "link": "https://example.com/scriptures"
+        }
+      ],
+      "top_topics": [
+        {
+          "topic": "anxiety",
+          "count": 2
+        },
+        {
+          "topic": "generic",
+          "count": 1
+        },
+        {
+          "topic": "prayer",
+          "count": 1
+        }
+      ]
+    },
+    "revenue_readiness": {
+      "product_count": 2,
+      "offer_count": 2,
+      "funnel_count": 2,
+      "ready_product_count": 0,
+      "all_products_ready": false
+    },
+    "live_links": {
+      "offer_count": 2,
+      "product_count": 2,
+      "ready_offer_count": 0,
+      "ready_product_count": 0,
+      "all_offers_live_ready": false,
+      "all_products_live_ready": false
+    },
+    "catalog": {
+      "product_count": 2,
+      "funnel_count": 2
+    },
+    "next_actions": [
+      "Update missing offer links, delivery links, or landing pages before going live.",
+      "Run the pipeline more to collect winner data before optimizing aggressively.",
+      "Replace placeholder offer links with real live URLs.",
+      "Replace placeholder product delivery links with real live URLs."
+    ]
+  },
+  "go_live_steps": [
+    "Keep PIPELINE_LIVE set to false.",
+    "Replace placeholder offer links with real live URLs.",
+    "Replace placeholder product delivery links with real live URLs."
+  ]
+}

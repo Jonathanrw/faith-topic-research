@@ -1,0 +1,65 @@
+{
+  "growth": {
+    "winner_video_count": 0,
+    "top_topics": [],
+    "top_hooks": []
+  },
+  "monetization": {
+    "offer_usage_entry_count": 4,
+    "top_offers": [
+      {
+        "offer_id": "free_anxiety_prayer",
+        "count": 4,
+        "title": "Night Anxiety Prayer Guide",
+        "type": "lead_magnet",
+        "link": "https://example.com/prayer"
+      },
+      {
+        "offer_id": "scripture_pack",
+        "count": 2,
+        "title": "30 Scriptures for Anxiety",
+        "type": "paid",
+        "link": "https://example.com/scriptures"
+      }
+    ],
+    "top_topics": [
+      {
+        "topic": "anxiety",
+        "count": 2
+      },
+      {
+        "topic": "generic",
+        "count": 1
+      },
+      {
+        "topic": "prayer",
+        "count": 1
+      }
+    ]
+  },
+  "revenue_readiness": {
+    "product_count": 2,
+    "offer_count": 2,
+    "funnel_count": 2,
+    "ready_product_count": 0,
+    "all_products_ready": false
+  },
+  "live_links": {
+    "offer_count": 2,
+    "product_count": 2,
+    "ready_offer_count": 0,
+    "ready_product_count": 0,
+    "all_offers_live_ready": false,
+    "all_products_live_ready": false
+  },
+  "catalog": {
+    "product_count": 2,
+    "funnel_count": 2
+  },
+  "next_actions": [
+    "Update missing offer links, delivery links, or landing pages before going live.",
+    "Run the pipeline more to collect winner data before optimizing aggressively.",
+    "Replace placeholder offer links with real live URLs.",
+    "Replace placeholder product delivery links with real live URLs."
+  ]
+}
