@@ -9,6 +9,27 @@ AUDIO_DIR = Path("content/audio")
 BACKGROUND_DIR = Path("content/backgrounds")
 VIDEO_DIR = Path("content/videos")
 
+MUSIC_DIR = Path("content/assets/music")
+PEACEFUL_MUSIC_DIR = MUSIC_DIR / "peaceful"
+HOPEFUL_MUSIC_DIR = MUSIC_DIR / "hopeful"
+EMOTIONAL_MUSIC_DIR = MUSIC_DIR / "emotional"
+
+
+def log_music_status() -> None:
+    music_dirs = {
+        "peaceful": PEACEFUL_MUSIC_DIR,
+        "hopeful": HOPEFUL_MUSIC_DIR,
+        "emotional": EMOTIONAL_MUSIC_DIR,
+    }
+
+    for mood, folder in music_dirs.items():
+        if not folder.exists():
+            print(f"Music folder missing: {folder}")
+            continue
+
+        tracks = list(folder.glob("*.mp3"))
+        print(f"Music folder '{mood}': {len(tracks)} track(s) found")
+
 
 def find_latest_ready_base_name() -> str | None:
     long_files = sorted(SCRIPT_DIR.glob("*_long.txt"), reverse=True)
@@ -33,6 +54,8 @@ def ensure_long_assets(base_name: str) -> None:
         long_output = render_long_video(base_name)
         if long_output:
             print(f"Created long video: {long_output}")
+        else:
+            print(f"Failed to create long video for base: {base_name}")
     else:
         print(f"Long video already exists: {video_path}")
 
@@ -59,6 +82,8 @@ def ensure_short_assets(base_name: str, idx: int) -> None:
         short_output = render_short_video(base_name, idx)
         if short_output:
             print(f"Created short video {idx}: {short_output}")
+        else:
+            print(f"Failed to create short video {idx} for base: {base_name}")
     else:
         print(f"Short video {idx} already exists: {video_path}")
 
@@ -71,6 +96,7 @@ def ensure_short_assets(base_name: str, idx: int) -> None:
 
 def main() -> None:
     ensure_video_dir()
+    log_music_status()
 
     base_name = find_latest_ready_base_name()
     if not base_name:
