@@ -4,8 +4,6 @@ permissions:
   contents: write
 
 on:
-  schedule:
-    - cron: '15 11 * * *'
   workflow_dispatch:
 
 concurrency:
@@ -18,7 +16,8 @@ jobs:
 
     env:
       FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-      PIPELINE_LIVE: true
+      PIPELINE_LIVE: false
+      LIVE_TEST_OVERRIDE: false
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
       YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
       YOUTUBE_TOKEN_JSON: ${{ secrets.YOUTUBE_TOKEN_JSON }}
@@ -29,7 +28,7 @@ jobs:
       INSTAGRAM_BUSINESS_ACCOUNT_ID: ${{ secrets.INSTAGRAM_BUSINESS_ACCOUNT_ID }}
       OPENAI_MODEL: gpt-5-mini
       MAX_TOPICS_PER_DAY: 2
-      MIN_TOPIC_SCORE: 50
+      MIN_TOPIC_SCORE: 30
       MAX_SEARCH_RESULTS_PER_QUERY: 10
 
     steps:
