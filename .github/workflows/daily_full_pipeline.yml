@@ -147,16 +147,25 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          echo "===== DEBUG: Listing generated files ====="
+          ls -R content || true
+
+          echo "===== Adding files ====="
           git add data/*.json || true
           git add content/scripts/* || true
           git add content/audio/* || true
           git add content/backgrounds/* || true
-          git add content/videos/* || true
+          git add content/videos/*.mp4 || true
           git add content/thumbnails/* || true
           git add content/products/* || true
           git add content/landing_pages/* || true
           git add content/schedules/* || true
           git add content/manifests/* || true
           git add content/logs/* || true
-          git diff --cached --quiet || git commit -m "Daily full pipeline run (staging mode + live mode guard + meta publish)"
+
+          echo "===== Git Status ====="
+          git status
+
+          git diff --cached --quiet || git commit -m "Auto: Add generated pipeline assets"
           git push
