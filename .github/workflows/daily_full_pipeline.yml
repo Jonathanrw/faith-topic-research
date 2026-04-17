@@ -16,16 +16,13 @@ jobs:
 
     env:
       FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+      # Keep publishing OFF until build mode is stable
       PIPELINE_LIVE: false
       LIVE_TEST_OVERRIDE: false
+
+      # Current low-cost settings
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-      YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
-      YOUTUBE_TOKEN_JSON: ${{ secrets.YOUTUBE_TOKEN_JSON }}
-      META_APP_ID: ${{ secrets.META_APP_ID }}
-      META_APP_SECRET: ${{ secrets.META_APP_SECRET }}
-      META_ACCESS_TOKEN: ${{ secrets.META_ACCESS_TOKEN }}
-      FACEBOOK_PAGE_ID: ${{ secrets.FACEBOOK_PAGE_ID }}
-      INSTAGRAM_BUSINESS_ACCOUNT_ID: ${{ secrets.INSTAGRAM_BUSINESS_ACCOUNT_ID }}
       OPENAI_MODEL: gpt-5-mini
       MAX_TOPICS_PER_DAY: 2
       MIN_TOPIC_SCORE: 30
@@ -34,11 +31,13 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: "3.11"
 
       - name: Install FFmpeg
         run: |
@@ -57,18 +56,18 @@ jobs:
           set -e
           CMD=$1
           echo "Running: $CMD"
-          for i in {1..3}
+          for i in {1..2}
           do
             echo "Attempt $i..."
             if eval $CMD; then
               echo "Success"
               exit 0
             fi
-            echo "Retrying in 10 seconds..."
-            sleep 10
+            echo "Retrying in 5 seconds..."
+            sleep 5
           done
-          echo "Step failed, continuing pipeline..."
-          exit 0
+          echo "Step failed."
+          exit 1
           EOF
           chmod +x safe_run.sh
 
@@ -87,85 +86,45 @@ jobs:
       - name: Render Videos
         run: ./safe_run.sh "python -m src.render_videos"
 
-      - name: Generate Products
-        run: ./safe_run.sh "python -m src.product_generator"
-
-      - name: Generate Product Catalog Report
-        run: python -m src.product_catalog_report
-
-      - name: Generate Landing Pages
-        run: ./safe_run.sh "python -m src.landing_page_generator"
-
-      - name: Generate Funnel Report
-        run: python -m src.funnel_generator
-
-      - name: Generate Revenue Readiness Report
-        run: python -m src.revenue_readiness_report
-
       - name: Generate Schedule
         run: ./safe_run.sh "python -m src.generate_schedule"
 
-      - name: Asset Report
-        run: python -m src.missing_asset_report
-
-      - name: Publish Readiness Check
-        run: python -m src.check_publish_ready
-
-      - name: Generate Offer Usage Report
-        run: python -m src.offer_usage_report
-
-      - name: Generate Monetization Summary
-        run: python -m src.monetization_summary
-
-      - name: Track Performance
-        run: python -m src.performance_tracker
-
-      - name: Extract Winners
-        run: python -m src.winner_extractor
-
-      - name: Run Master System Report
-        run: python -m src.master_system_report
-
-      - name: Run Live Mode Guard
-        run: python -m src.live_mode_guard
-
-      - name: Publish to YouTube
-        if: env.PIPELINE_LIVE == 'true'
-        env:
-          YOUTUBE_TOKEN_JSON: ${{ secrets.YOUTUBE_TOKEN_JSON }}
-        run: python -m src.publish_youtube
-
-      - name: Publish to Facebook and Instagram
-        if: env.PIPELINE_LIVE == 'true' && env.META_ACCESS_TOKEN != '' && env.FACEBOOK_PAGE_ID != '' && env.INSTAGRAM_BUSINESS_ACCOUNT_ID != ''
-        env:
-          META_ACCESS_TOKEN: ${{ secrets.META_ACCESS_TOKEN }}
-          FACEBOOK_PAGE_ID: ${{ secrets.FACEBOOK_PAGE_ID }}
-          INSTAGRAM_BUSINESS_ACCOUNT_ID: ${{ secrets.INSTAGRAM_BUSINESS_ACCOUNT_ID }}
-        run: python -m src.publish_meta
+      - name: Show generated files
+        if: always()
+        run: |
+          echo "===== content tree ====="
+          ls -R content || true
+          echo "===== recent videos ====="
+          ls -lah content/videos || true
+          echo "===== recent audio ====="
+          ls -lah content/audio || true
+          echo "===== recent backgrounds ====="
+          ls -lah content/backgrounds || true
+          echo "===== recent schedules ====="
+          ls -lah content/schedules || true
 
       - name: Commit Pipeline Outputs
+        if: always()
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          echo "===== DEBUG: Listing generated files ====="
-          ls -R content || true
-
-          echo "===== Adding files ====="
           git add data/*.json || true
           git add content/scripts/* || true
           git add content/audio/* || true
           git add content/backgrounds/* || true
-          git add content/videos/*.mp4 || true
+          git add content/videos/* || true
           git add content/thumbnails/* || true
-          git add content/products/* || true
-          git add content/landing_pages/* || true
           git add content/schedules/* || true
           git add content/manifests/* || true
           git add content/logs/* || true
 
-          echo "===== Git Status ====="
+          echo "===== git status ====="
           git status
 
-          git diff --cached --quiet || git commit -m "Auto: Add generated pipeline assets"
-          git push
+          if ! git diff --cached --quiet; then
+            git commit -m "Build pipeline outputs"
+            git push
+          else
+            echo "No generated files were staged."
+          fi
