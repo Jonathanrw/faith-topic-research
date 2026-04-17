@@ -2,7 +2,6 @@
   "recommended_mode": "staging",
   "blockers": [
     "Not enough winner data yet.",
-    "Not all products are ready for live sales.",
     "Not all offer links are live-ready.",
     "Not all product delivery links are live-ready."
   ],
@@ -85,7 +84,7 @@
       "price": 0,
       "cta": "Download the free Night Anxiety Prayer Guide",
       "delivery_link": "https://example.com/night-anxiety-prayer-guide",
-      "landing_page_path": "",
+      "landing_page_path": "content/landing_pages/20260417_003628_night_anxiety_prayer_guide_landing_page.md",
       "funnel_type": "lead_capture",
       "entry_point": "youtube_description",
       "flow": [
@@ -103,7 +102,7 @@
       "price": 9,
       "cta": "Get the 30 Scriptures for Anxiety pack",
       "delivery_link": "https://example.com/30-scriptures-for-anxiety",
-      "landing_page_path": "",
+      "landing_page_path": "content/landing_pages/20260417_003640_30_scriptures_for_anxiety_landing_page.md",
       "funnel_type": "direct_offer",
       "entry_point": "youtube_description",
       "flow": [
@@ -157,8 +156,8 @@
       "product_count": 2,
       "offer_count": 2,
       "funnel_count": 2,
-      "ready_product_count": 0,
-      "all_products_ready": false
+      "ready_product_count": 2,
+      "all_products_ready": true
     },
     "live_links": {
       "offer_count": 2,
@@ -173,7 +172,6 @@
       "funnel_count": 2
     },
     "next_actions": [
-      "Update missing offer links, delivery links, or landing pages before going live.",
       "Run the pipeline more to collect winner data before optimizing aggressively.",
       "Replace placeholder offer links with real live URLs.",
       "Replace placeholder product delivery links with real live URLs."

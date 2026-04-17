@@ -41,8 +41,8 @@
     "product_count": 2,
     "offer_count": 2,
     "funnel_count": 2,
-    "ready_product_count": 0,
-    "all_products_ready": false
+    "ready_product_count": 2,
+    "all_products_ready": true
   },
   "live_links": {
     "offer_count": 2,
@@ -57,7 +57,6 @@
     "funnel_count": 2
   },
   "next_actions": [
-    "Update missing offer links, delivery links, or landing pages before going live.",
     "Run the pipeline more to collect winner data before optimizing aggressively.",
     "Replace placeholder offer links with real live URLs.",
     "Replace placeholder product delivery links with real live URLs."

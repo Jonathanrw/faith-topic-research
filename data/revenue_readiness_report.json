@@ -2,8 +2,8 @@
   "product_count": 2,
   "offer_count": 2,
   "funnel_count": 2,
-  "ready_product_count": 0,
-  "all_products_ready": false,
+  "ready_product_count": 2,
+  "all_products_ready": true,
   "checks": [
     {
       "product_id": "night_anxiety_prayer_guide",
@@ -11,8 +11,8 @@
       "has_source_offer": true,
       "has_offer_link": true,
       "has_delivery_link": true,
-      "has_landing_page": false,
-      "ready_for_live_sales": false
+      "has_landing_page": true,
+      "ready_for_live_sales": true
     },
     {
       "product_id": "30_scriptures_for_anxiety",
@@ -20,8 +20,8 @@
       "has_source_offer": true,
       "has_offer_link": true,
       "has_delivery_link": true,
-      "has_landing_page": false,
-      "ready_for_live_sales": false
+      "has_landing_page": true,
+      "ready_for_live_sales": true
     }
   ]
 }

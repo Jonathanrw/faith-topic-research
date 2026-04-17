@@ -7,20 +7,19 @@
     "has_products": true,
     "has_offers": true,
     "has_funnels": true,
-    "all_products_ready": false,
+    "all_products_ready": true,
     "all_offers_live_ready": false,
     "all_products_live_ready": false
   },
   "blockers": [
     "Not enough winner data yet.",
-    "Not all products are ready for live sales.",
     "Not all offer links are live-ready.",
     "Not all product delivery links are live-ready."
   ],
   "summary": {
     "winner_video_count": 0,
     "offer_usage_entry_count": 4,
-    "ready_product_count": 0,
+    "ready_product_count": 2,
     "product_count": 2,
     "ready_offer_link_count": 0,
     "ready_product_link_count": 0

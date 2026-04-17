@@ -1,14 +1,13 @@
 {
   "ready_for_live_mode": false,
   "recommended_mode": "staging",
-  "blocker_count": 4,
+  "blocker_count": 3,
   "product_count": 2,
   "funnel_count": 2,
   "live_ready_offer_count": 0,
   "live_ready_product_count": 0,
   "blockers": [
     "Not enough winner data yet.",
-    "Not all products are ready for live sales.",
     "Not all offer links are live-ready.",
     "Not all product delivery links are live-ready."
   ],
