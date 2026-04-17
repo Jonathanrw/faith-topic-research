@@ -2788,5 +2788,41 @@
     "source": "daily_research",
     "status": "queued",
     "created_at": "2026-04-17T00:30:13Z"
+  },
+  {
+    "channel": "faith",
+    "channel_name": "Faith Encouragement",
+    "topic": "How to Hear God's Voice Without Confusing It With Your Thoughts (3 Tests)",
+    "why_it_matters": "People desperate for clarity repeatedly search this topic. Giving trustworthy, biblical tests helps viewers gain confidence and avoid harmful confusion.",
+    "short_hook": "Think you heard God — but not sure? Try these 3 biblical tests before you act.",
+    "long_form_angle": "Start with a relatable anecdote (a decision with mixed inner voices). Introduce the problem (how common and urgent this is). Teach three practical tests (Scripture alignment, peace/fruit over time, community confirmation) with short examples and pitfalls. Include a quick how-to prayer and next steps for discernment. End with reassurance about growing in discernment.",
+    "pillar": "Hearing God's voice",
+    "searchability_score": 95,
+    "emotional_score": 88,
+    "rewatch_score": 90,
+    "shorts_score": 96,
+    "long_form_score": 94,
+    "overall_score": 94,
+    "source": "daily_research",
+    "status": "used",
+    "created_at": "2026-04-17T01:15:42Z"
+  },
+  {
+    "channel": "faith",
+    "channel_name": "Faith Encouragement",
+    "topic": "Why God Feels Silent: 4 Biblical Reasons He's Quiet—and What to Do Right Now",
+    "why_it_matters": "Seasons of spiritual silence drive people away or into despair. Explaining biblical reasons normalizes the experience and offers immediate, actionable hope.",
+    "short_hook": "Feeling like God is quiet? Here are 4 biblical reasons — and 4 things you can do tonight.",
+    "long_form_angle": "Lead with empathy (the painful silence). Present four clear biblical reasons (refinement/testing, preparation, timing, conditional distance because of sin/unresolved hurt) each with a Scripture example, then give one practical response for each reason (worship, faithful waiting, obedience, confession). Finish with a short prayer and invitation to repeat the practices.",
+    "pillar": "Spiritual Dryness / Waiting on God",
+    "searchability_score": 92,
+    "emotional_score": 90,
+    "rewatch_score": 86,
+    "shorts_score": 90,
+    "long_form_score": 94,
+    "overall_score": 91,
+    "source": "daily_research",
+    "status": "queued",
+    "created_at": "2026-04-17T01:15:42Z"
   }
 ]
