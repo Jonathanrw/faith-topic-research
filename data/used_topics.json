@@ -286,5 +286,23 @@
     "source": "daily_research",
     "status": "used",
     "created_at": "2026-04-19T11:54:10Z"
+  },
+  {
+    "channel": "faith",
+    "channel_name": "Faith Encouragement",
+    "topic": "Panic Attack First Aid: Breathe Through Psalm 46",
+    "why_it_matters": "Panic can feel overwhelming; a step-by-step faith-based protocol offers immediate relief.",
+    "short_hook": "Panic wave? 3 breaths, 1 verse.",
+    "long_form_angle": "Guide box breathing synced with Be still and know, then a quick grounding exercise and reassurance on the physiology of panic. End with a short prayer and a safety plan card viewers can screenshot.",
+    "pillar": "Anxiety",
+    "searchability_score": 90,
+    "emotional_score": 93,
+    "rewatch_score": 89,
+    "shorts_score": 95,
+    "long_form_score": 84,
+    "overall_score": 92,
+    "source": "daily_research",
+    "status": "used",
+    "created_at": "2026-04-08T01:47:27Z"
   }
 ]
