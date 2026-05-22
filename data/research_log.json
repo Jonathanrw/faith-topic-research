@@ -1587,5 +1587,36 @@
       "1% Better Peace: Tiny Daily Rhythms to Rewire an Anxious Brain (Biblical + Brain Science)",
       "Strong on the Outside, Lonely Inside: God’s Answer to Hidden Loneliness"
     ]
+  },
+  {
+    "timestamp": "2026-05-22T13:39:05Z",
+    "type": "search_error",
+    "channel": "faith",
+    "query": "This truth can change how you see your struggle",
+    "error": "HTTPSConnectionPool(host='www.googleapis.com', port=443): Read timed out. (read timeout=30)"
+  },
+  {
+    "timestamp": "2026-05-22T13:40:31Z",
+    "type": "daily_run_summary",
+    "channel": "faith",
+    "channel_name": "Faith Encouragement",
+    "raw_result_count": 260,
+    "candidate_count": 15,
+    "approved_count": 13,
+    "approved_topics": [
+      "How to Hear God’s Voice Daily: 5 Habits That Train Your Spirit",
+      "Don’t Mistake Anxiety for God’s Voice: 3 Biblical Tests to Discern Peace vs. Panic",
+      "Stop Overthinking God’s Will: A 10‑Minute Decision Framework from Proverbs 3 & Philippians 4",
+      "Why Your Prayers Feel Unanswered: 5 Hidden Ways God Is Working",
+      "You’re Praying but Still Anxious: The Biblical Answer Few Practice",
+      "Healing the Wounds of Rejection: How Jesus Redefines Your Worth",
+      "The 3 Circles of God’s Will: Scripture, Spirit, Stewardship—Decide Without Fear",
+      "What the Bible Actually Says About Anxiety (And the 3‑Step Calm Practice)",
+      "Loneliness Is Not a Punishment: 5 Biblical and Brain‑Backed Habits to Reconnect",
+      "Overcoming Morning Anxiety: A 5‑Minute Scripture‑Based Reset Routine",
+      "Guilt, Shame, and Grace: What Romans 8 Means for Your Mental Health",
+      "A Jesus‑Centered Breath Prayer: Turn Panic Into Peace in 60 Seconds (Philippians 4:6–7)",
+      "Fear vs. Wisdom: How to Tell the Difference and Move Forward in Faith"
+    ]
   }
 ]
