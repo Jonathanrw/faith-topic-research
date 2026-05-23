@@ -1618,5 +1618,96 @@
       "A Jesus‑Centered Breath Prayer: Turn Panic Into Peace in 60 Seconds (Philippians 4:6–7)",
       "Fear vs. Wisdom: How to Tell the Difference and Move Forward in Faith"
     ]
+  },
+  {
+    "timestamp": "2026-05-23T12:09:08Z",
+    "type": "search_error",
+    "channel": "faith",
+    "query": "how to deal with spiritual dryness",
+    "error": "429 Client Error: Too Many Requests for url: https://www.googleapis.com/youtube/v3/search?part=snippet&q=how+to+deal+with+spiritual+dryness&type=video&order=relevance&maxResults=10&publishedAfter=2026-04-08T12%3A09%3A08Z&key=AIzaSyAjhnN4MPJSclVX6jElZz2Do2Zo1UjNkCQ"
+  },
+  {
+    "timestamp": "2026-05-23T12:09:10Z",
+    "type": "search_error",
+    "channel": "faith",
+    "query": "what the Bible says about depression",
+    "error": "429 Client Error: Too Many Requests for url: https://www.googleapis.com/youtube/v3/search?part=snippet&q=what+the+Bible+says+about+depression&type=video&order=relevance&maxResults=10&publishedAfter=2026-04-08T12%3A09%3A09Z&key=AIzaSyAjhnN4MPJSclVX6jElZz2Do2Zo1UjNkCQ"
+  },
+  {
+    "timestamp": "2026-05-23T12:09:10Z",
+    "type": "search_error",
+    "channel": "faith",
+    "query": "how to let go and trust God",
+    "error": "429 Client Error: Too Many Requests for url: https://www.googleapis.com/youtube/v3/search?part=snippet&q=how+to+let+go+and+trust+God&type=video&order=relevance&maxResults=10&publishedAfter=2026-04-08T12%3A09%3A10Z&key=AIzaSyAjhnN4MPJSclVX6jElZz2Do2Zo1UjNkCQ"
+  },
+  {
+    "timestamp": "2026-05-23T12:09:10Z",
+    "type": "search_error",
+    "channel": "faith",
+    "query": "how to fight negative thoughts biblically",
+    "error": "429 Client Error: Too Many Requests for url: https://www.googleapis.com/youtube/v3/search?part=snippet&q=how+to+fight+negative+thoughts+biblically&type=video&order=relevance&maxResults=10&publishedAfter=2026-04-08T12%3A09%3A10Z&key=AIzaSyAjhnN4MPJSclVX6jElZz2Do2Zo1UjNkCQ"
+  },
+  {
+    "timestamp": "2026-05-23T12:09:10Z",
+    "type": "search_error",
+    "channel": "faith",
+    "query": "If you're feeling anxious, watch this",
+    "error": "429 Client Error: Too Many Requests for url: https://www.googleapis.com/youtube/v3/search?part=snippet&q=If+you%27re+feeling+anxious%2C+watch+this&type=video&order=relevance&maxResults=10&publishedAfter=2026-04-08T12%3A09%3A10Z&key=AIzaSyAjhnN4MPJSclVX6jElZz2Do2Zo1UjNkCQ"
+  },
+  {
+    "timestamp": "2026-05-23T12:09:11Z",
+    "type": "search_error",
+    "channel": "faith",
+    "query": "You may be overthinking this",
+    "error": "429 Client Error: Too Many Requests for url: https://www.googleapis.com/youtube/v3/search?part=snippet&q=You+may+be+overthinking+this&type=video&order=relevance&maxResults=10&publishedAfter=2026-04-08T12%3A09%3A11Z&key=AIzaSyAjhnN4MPJSclVX6jElZz2Do2Zo1UjNkCQ"
+  },
+  {
+    "timestamp": "2026-05-23T12:09:11Z",
+    "type": "search_error",
+    "channel": "faith",
+    "query": "This is why you still feel stuck",
+    "error": "429 Client Error: Too Many Requests for url: https://www.googleapis.com/youtube/v3/search?part=snippet&q=This+is+why+you+still+feel+stuck&type=video&order=relevance&maxResults=10&publishedAfter=2026-04-08T12%3A09%3A11Z&key=AIzaSyAjhnN4MPJSclVX6jElZz2Do2Zo1UjNkCQ"
+  },
+  {
+    "timestamp": "2026-05-23T12:09:11Z",
+    "type": "search_error",
+    "channel": "faith",
+    "query": "You need to hear this today",
+    "error": "429 Client Error: Too Many Requests for url: https://www.googleapis.com/youtube/v3/search?part=snippet&q=You+need+to+hear+this+today&type=video&order=relevance&maxResults=10&publishedAfter=2026-04-08T12%3A09%3A11Z&key=AIzaSyAjhnN4MPJSclVX6jElZz2Do2Zo1UjNkCQ"
+  },
+  {
+    "timestamp": "2026-05-23T12:09:11Z",
+    "type": "search_error",
+    "channel": "faith",
+    "query": "If you're tired of waiting on God, listen to this",
+    "error": "429 Client Error: Too Many Requests for url: https://www.googleapis.com/youtube/v3/search?part=snippet&q=If+you%27re+tired+of+waiting+on+God%2C+listen+to+this&type=video&order=relevance&maxResults=10&publishedAfter=2026-04-08T12%3A09%3A11Z&key=AIzaSyAjhnN4MPJSclVX6jElZz2Do2Zo1UjNkCQ"
+  },
+  {
+    "timestamp": "2026-05-23T12:09:11Z",
+    "type": "search_error",
+    "channel": "faith",
+    "query": "This truth can change how you see your struggle",
+    "error": "429 Client Error: Too Many Requests for url: https://www.googleapis.com/youtube/v3/search?part=snippet&q=This+truth+can+change+how+you+see+your+struggle&type=video&order=relevance&maxResults=10&publishedAfter=2026-04-08T12%3A09%3A11Z&key=AIzaSyAjhnN4MPJSclVX6jElZz2Do2Zo1UjNkCQ"
+  },
+  {
+    "timestamp": "2026-05-23T12:10:57Z",
+    "type": "daily_run_summary",
+    "channel": "faith",
+    "channel_name": "Faith Encouragement",
+    "raw_result_count": 170,
+    "candidate_count": 13,
+    "approved_count": 10,
+    "approved_topics": [
+      "Is That God’s Voice or Anxiety? 6 Tests You Can Trust",
+      "When God Feels Silent: Esther, Job, and Jesus on Waiting Well",
+      "Panic to Peace in 60 Seconds: The Cast‑and‑Catch Method (1 Peter 5:7)",
+      "Stop Overthinking God’s Will: A 3‑Step Peace Plan from Philippians 4",
+      "Night Anxiety Reset: 7 Breath‑Prayers Straight from Scripture",
+      "Healing from Rejection: 3 Daily Habits to Renew Your Identity in Christ",
+      "Loneliness and Elijah’s Cave: God’s 4 Moves You Can Practice Today",
+      "Turn Fear into Faith: One Verse, One Reframe, Real Relief",
+      "From Guilt to Grace: The Truth of 2 Corinthians 12:9 for Shame Spirals",
+      "Purpose Without Overthinking: Discern Your Next Step with Peace"
+    ]
   }
 ]
