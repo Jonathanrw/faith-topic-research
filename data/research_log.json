@@ -1709,5 +1709,81 @@
       "From Guilt to Grace: The Truth of 2 Corinthians 12:9 for Shame Spirals",
       "Purpose Without Overthinking: Discern Your Next Step with Peace"
     ]
+  },
+  {
+    "timestamp": "2026-05-24T12:12:22Z",
+    "type": "search_error",
+    "channel": "faith",
+    "query": "what grace really means",
+    "error": "429 Client Error: Too Many Requests for url: https://www.googleapis.com/youtube/v3/search?part=snippet&q=what+grace+really+means&type=video&order=relevance&maxResults=10&publishedAfter=2026-04-09T12%3A12%3A22Z&key=AIzaSyAjhnN4MPJSclVX6jElZz2Do2Zo1UjNkCQ"
+  },
+  {
+    "timestamp": "2026-05-24T12:12:23Z",
+    "type": "search_error",
+    "channel": "faith",
+    "query": "how to deal with guilt and shame biblically",
+    "error": "429 Client Error: Too Many Requests for url: https://www.googleapis.com/youtube/v3/search?part=snippet&q=how+to+deal+with+guilt+and+shame+biblically&type=video&order=relevance&maxResults=10&publishedAfter=2026-04-09T12%3A12%3A23Z&key=AIzaSyAjhnN4MPJSclVX6jElZz2Do2Zo1UjNkCQ"
+  },
+  {
+    "timestamp": "2026-05-24T12:12:24Z",
+    "type": "search_error",
+    "channel": "faith",
+    "query": "what the Bible says about worry",
+    "error": "429 Client Error: Too Many Requests for url: https://www.googleapis.com/youtube/v3/search?part=snippet&q=what+the+Bible+says+about+worry&type=video&order=relevance&maxResults=10&publishedAfter=2026-04-09T12%3A12%3A24Z&key=AIzaSyAjhnN4MPJSclVX6jElZz2Do2Zo1UjNkCQ"
+  },
+  {
+    "timestamp": "2026-05-24T12:12:24Z",
+    "type": "search_error",
+    "channel": "faith",
+    "query": "how to let go and trust God",
+    "error": "429 Client Error: Too Many Requests for url: https://www.googleapis.com/youtube/v3/search?part=snippet&q=how+to+let+go+and+trust+God&type=video&order=relevance&maxResults=10&publishedAfter=2026-04-09T12%3A12%3A24Z&key=AIzaSyAjhnN4MPJSclVX6jElZz2Do2Zo1UjNkCQ"
+  },
+  {
+    "timestamp": "2026-05-24T12:12:25Z",
+    "type": "search_error",
+    "channel": "faith",
+    "query": "If you're feeling anxious, watch this",
+    "error": "429 Client Error: Too Many Requests for url: https://www.googleapis.com/youtube/v3/search?part=snippet&q=If+you%27re+feeling+anxious%2C+watch+this&type=video&order=relevance&maxResults=10&publishedAfter=2026-04-09T12%3A12%3A25Z&key=AIzaSyAjhnN4MPJSclVX6jElZz2Do2Zo1UjNkCQ"
+  },
+  {
+    "timestamp": "2026-05-24T12:12:25Z",
+    "type": "search_error",
+    "channel": "faith",
+    "query": "If God feels silent right now, watch this",
+    "error": "429 Client Error: Too Many Requests for url: https://www.googleapis.com/youtube/v3/search?part=snippet&q=If+God+feels+silent+right+now%2C+watch+this&type=video&order=relevance&maxResults=10&publishedAfter=2026-04-09T12%3A12%3A25Z&key=AIzaSyAjhnN4MPJSclVX6jElZz2Do2Zo1UjNkCQ"
+  },
+  {
+    "timestamp": "2026-05-24T12:12:25Z",
+    "type": "search_error",
+    "channel": "faith",
+    "query": "This is why you still feel stuck",
+    "error": "429 Client Error: Too Many Requests for url: https://www.googleapis.com/youtube/v3/search?part=snippet&q=This+is+why+you+still+feel+stuck&type=video&order=relevance&maxResults=10&publishedAfter=2026-04-09T12%3A12%3A25Z&key=AIzaSyAjhnN4MPJSclVX6jElZz2Do2Zo1UjNkCQ"
+  },
+  {
+    "timestamp": "2026-05-24T12:12:26Z",
+    "type": "search_error",
+    "channel": "faith",
+    "query": "This truth can change how you see your struggle",
+    "error": "429 Client Error: Too Many Requests for url: https://www.googleapis.com/youtube/v3/search?part=snippet&q=This+truth+can+change+how+you+see+your+struggle&type=video&order=relevance&maxResults=10&publishedAfter=2026-04-09T12%3A12%3A26Z&key=AIzaSyAjhnN4MPJSclVX6jElZz2Do2Zo1UjNkCQ"
+  },
+  {
+    "timestamp": "2026-05-24T12:13:28Z",
+    "type": "daily_run_summary",
+    "channel": "faith",
+    "channel_name": "Faith Encouragement",
+    "raw_result_count": 190,
+    "candidate_count": 12,
+    "approved_count": 9,
+    "approved_topics": [
+      "Know God’s Will One Step at a Time: A Simple Framework You Won’t Overthink",
+      "Healing From Rejection God’s Way: What Jesus Teaches in Mark 6",
+      "Stop Overthinking at 2 A.M.: A Christian 4‑Step Reset from Philippians 4:6–9",
+      "When Prayer Feels Unanswered: 4 Biblical Responses That Build Your Faith",
+      "Seven Distractions That Muffle God’s Voice (And How to Quiet Them)",
+      "Loneliness Is a Signal, Not a Sentence: Elijah’s 3 Moves in 1 Kings 19",
+      "Jesus’ Anti‑Anxiety Plan in Matthew 6: 3 Practices Most Christians Miss",
+      "Guilt vs Shame vs Grace: How God Convicts Without Condemning",
+      "Trade Panic for Peace: Swapping Fear of Everything for Fear of the Lord"
+    ]
   }
 ]
