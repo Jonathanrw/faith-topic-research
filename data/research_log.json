@@ -1785,5 +1785,83 @@
       "Guilt vs Shame vs Grace: How God Convicts Without Condemning",
       "Trade Panic for Peace: Swapping Fear of Everything for Fear of the Lord"
     ]
+  },
+  {
+    "timestamp": "2026-05-25T14:17:52Z",
+    "type": "search_error",
+    "channel": "faith",
+    "query": "why Christians struggle with peace",
+    "error": "429 Client Error: Too Many Requests for url: https://www.googleapis.com/youtube/v3/search?part=snippet&q=why+Christians+struggle+with+peace&type=video&order=relevance&maxResults=10&publishedAfter=2026-04-10T14%3A17%3A52Z&key=AIzaSyAjhnN4MPJSclVX6jElZz2Do2Zo1UjNkCQ"
+  },
+  {
+    "timestamp": "2026-05-25T14:17:52Z",
+    "type": "search_error",
+    "channel": "faith",
+    "query": "how to deal with spiritual dryness",
+    "error": "429 Client Error: Too Many Requests for url: https://www.googleapis.com/youtube/v3/search?part=snippet&q=how+to+deal+with+spiritual+dryness&type=video&order=relevance&maxResults=10&publishedAfter=2026-04-10T14%3A17%3A52Z&key=AIzaSyAjhnN4MPJSclVX6jElZz2Do2Zo1UjNkCQ"
+  },
+  {
+    "timestamp": "2026-05-25T14:17:52Z",
+    "type": "search_error",
+    "channel": "faith",
+    "query": "how to deal with guilt and shame biblically",
+    "error": "429 Client Error: Too Many Requests for url: https://www.googleapis.com/youtube/v3/search?part=snippet&q=how+to+deal+with+guilt+and+shame+biblically&type=video&order=relevance&maxResults=10&publishedAfter=2026-04-10T14%3A17%3A52Z&key=AIzaSyAjhnN4MPJSclVX6jElZz2Do2Zo1UjNkCQ"
+  },
+  {
+    "timestamp": "2026-05-25T14:17:52Z",
+    "type": "search_error",
+    "channel": "faith",
+    "query": "what the Bible says about waiting on God",
+    "error": "429 Client Error: Too Many Requests for url: https://www.googleapis.com/youtube/v3/search?part=snippet&q=what+the+Bible+says+about+waiting+on+God&type=video&order=relevance&maxResults=10&publishedAfter=2026-04-10T14%3A17%3A52Z&key=AIzaSyAjhnN4MPJSclVX6jElZz2Do2Zo1UjNkCQ"
+  },
+  {
+    "timestamp": "2026-05-25T14:17:56Z",
+    "type": "search_error",
+    "channel": "faith",
+    "query": "If God feels silent right now, watch this",
+    "error": "429 Client Error: Too Many Requests for url: https://www.googleapis.com/youtube/v3/search?part=snippet&q=If+God+feels+silent+right+now%2C+watch+this&type=video&order=relevance&maxResults=10&publishedAfter=2026-04-10T14%3A17%3A55Z&key=AIzaSyAjhnN4MPJSclVX6jElZz2Do2Zo1UjNkCQ"
+  },
+  {
+    "timestamp": "2026-05-25T14:17:56Z",
+    "type": "search_error",
+    "channel": "faith",
+    "query": "This is why you still feel stuck",
+    "error": "429 Client Error: Too Many Requests for url: https://www.googleapis.com/youtube/v3/search?part=snippet&q=This+is+why+you+still+feel+stuck&type=video&order=relevance&maxResults=10&publishedAfter=2026-04-10T14%3A17%3A56Z&key=AIzaSyAjhnN4MPJSclVX6jElZz2Do2Zo1UjNkCQ"
+  },
+  {
+    "timestamp": "2026-05-25T14:17:56Z",
+    "type": "search_error",
+    "channel": "faith",
+    "query": "You need to hear this today",
+    "error": "429 Client Error: Too Many Requests for url: https://www.googleapis.com/youtube/v3/search?part=snippet&q=You+need+to+hear+this+today&type=video&order=relevance&maxResults=10&publishedAfter=2026-04-10T14%3A17%3A56Z&key=AIzaSyAjhnN4MPJSclVX6jElZz2Do2Zo1UjNkCQ"
+  },
+  {
+    "timestamp": "2026-05-25T14:17:56Z",
+    "type": "search_error",
+    "channel": "faith",
+    "query": "If you're tired of waiting on God, listen to this",
+    "error": "429 Client Error: Too Many Requests for url: https://www.googleapis.com/youtube/v3/search?part=snippet&q=If+you%27re+tired+of+waiting+on+God%2C+listen+to+this&type=video&order=relevance&maxResults=10&publishedAfter=2026-04-10T14%3A17%3A56Z&key=AIzaSyAjhnN4MPJSclVX6jElZz2Do2Zo1UjNkCQ"
+  },
+  {
+    "timestamp": "2026-05-25T14:19:21Z",
+    "type": "daily_run_summary",
+    "channel": "faith",
+    "channel_name": "Faith Encouragement",
+    "raw_result_count": 190,
+    "candidate_count": 15,
+    "approved_count": 11,
+    "approved_topics": [
+      "How to Hear God’s Voice Without Overthinking: 4 Simple Filters",
+      "Stop Overthinking at Night: A 5‑Minute Scripture Routine That Calms Your Brain",
+      "Panic to Peace: A 4‑7‑8 Breath Prayer With Psalm 23",
+      "How to Know God’s Will Without Anxiety: 5 Boundaries Scripture Gives",
+      "Nighttime Overthinking vs. God’s Voice: 3 Ways to Tell the Difference",
+      "Loneliness Isn’t a Life Sentence: God’s Blueprint for Connection",
+      "Guilt, Shame, and Grace: How to Stop the Spiral in 10 Minutes",
+      "Anxiety vs. Trust: What the Bible Actually Teaches (and How to Practice It Today)",
+      "Finding Purpose When You Feel Stuck: Start With These Two Verses",
+      "Spiritual Dryness vs. Spiritual Depression: What’s the Difference and What Heals",
+      "Fear Lies, God Leads: 3 Questions to Replace Fear With Faith"
+    ]
   }
 ]
