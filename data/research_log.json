@@ -1953,5 +1953,94 @@
       "Why God Allows Loneliness—and How He Meets You In It",
       "Facing Fear Biblically: From Fight-or-Flight to Faith-and-Focus"
     ]
+  },
+  {
+    "timestamp": "2026-05-27T14:34:13Z",
+    "type": "search_error",
+    "channel": "faith",
+    "query": "why prayer feels unanswered",
+    "error": "429 Client Error: Too Many Requests for url: https://www.googleapis.com/youtube/v3/search?part=snippet&q=why+prayer+feels+unanswered&type=video&order=relevance&maxResults=10&publishedAfter=2026-04-12T14%3A34%3A13Z&key=AIzaSyAjhnN4MPJSclVX6jElZz2Do2Zo1UjNkCQ"
+  },
+  {
+    "timestamp": "2026-05-27T14:34:16Z",
+    "type": "search_error",
+    "channel": "faith",
+    "query": "what the Bible says about depression",
+    "error": "429 Client Error: Too Many Requests for url: https://www.googleapis.com/youtube/v3/search?part=snippet&q=what+the+Bible+says+about+depression&type=video&order=relevance&maxResults=10&publishedAfter=2026-04-12T14%3A34%3A16Z&key=AIzaSyAjhnN4MPJSclVX6jElZz2Do2Zo1UjNkCQ"
+  },
+  {
+    "timestamp": "2026-05-27T14:34:16Z",
+    "type": "search_error",
+    "channel": "faith",
+    "query": "what the Bible says about worry",
+    "error": "429 Client Error: Too Many Requests for url: https://www.googleapis.com/youtube/v3/search?part=snippet&q=what+the+Bible+says+about+worry&type=video&order=relevance&maxResults=10&publishedAfter=2026-04-12T14%3A34%3A16Z&key=AIzaSyAjhnN4MPJSclVX6jElZz2Do2Zo1UjNkCQ"
+  },
+  {
+    "timestamp": "2026-05-27T14:34:17Z",
+    "type": "search_error",
+    "channel": "faith",
+    "query": "how to fight negative thoughts biblically",
+    "error": "429 Client Error: Too Many Requests for url: https://www.googleapis.com/youtube/v3/search?part=snippet&q=how+to+fight+negative+thoughts+biblically&type=video&order=relevance&maxResults=10&publishedAfter=2026-04-12T14%3A34%3A17Z&key=AIzaSyAjhnN4MPJSclVX6jElZz2Do2Zo1UjNkCQ"
+  },
+  {
+    "timestamp": "2026-05-27T14:34:17Z",
+    "type": "search_error",
+    "channel": "faith",
+    "query": "If you're feeling anxious, watch this",
+    "error": "429 Client Error: Too Many Requests for url: https://www.googleapis.com/youtube/v3/search?part=snippet&q=If+you%27re+feeling+anxious%2C+watch+this&type=video&order=relevance&maxResults=10&publishedAfter=2026-04-12T14%3A34%3A17Z&key=AIzaSyAjhnN4MPJSclVX6jElZz2Do2Zo1UjNkCQ"
+  },
+  {
+    "timestamp": "2026-05-27T14:34:17Z",
+    "type": "search_error",
+    "channel": "faith",
+    "query": "If God feels silent right now, watch this",
+    "error": "429 Client Error: Too Many Requests for url: https://www.googleapis.com/youtube/v3/search?part=snippet&q=If+God+feels+silent+right+now%2C+watch+this&type=video&order=relevance&maxResults=10&publishedAfter=2026-04-12T14%3A34%3A17Z&key=AIzaSyAjhnN4MPJSclVX6jElZz2Do2Zo1UjNkCQ"
+  },
+  {
+    "timestamp": "2026-05-27T14:34:18Z",
+    "type": "search_error",
+    "channel": "faith",
+    "query": "This is why you still feel stuck",
+    "error": "429 Client Error: Too Many Requests for url: https://www.googleapis.com/youtube/v3/search?part=snippet&q=This+is+why+you+still+feel+stuck&type=video&order=relevance&maxResults=10&publishedAfter=2026-04-12T14%3A34%3A18Z&key=AIzaSyAjhnN4MPJSclVX6jElZz2Do2Zo1UjNkCQ"
+  },
+  {
+    "timestamp": "2026-05-27T14:34:18Z",
+    "type": "search_error",
+    "channel": "faith",
+    "query": "You need to hear this today",
+    "error": "429 Client Error: Too Many Requests for url: https://www.googleapis.com/youtube/v3/search?part=snippet&q=You+need+to+hear+this+today&type=video&order=relevance&maxResults=10&publishedAfter=2026-04-12T14%3A34%3A18Z&key=AIzaSyAjhnN4MPJSclVX6jElZz2Do2Zo1UjNkCQ"
+  },
+  {
+    "timestamp": "2026-05-27T14:34:18Z",
+    "type": "search_error",
+    "channel": "faith",
+    "query": "If you're tired of waiting on God, listen to this",
+    "error": "429 Client Error: Too Many Requests for url: https://www.googleapis.com/youtube/v3/search?part=snippet&q=If+you%27re+tired+of+waiting+on+God%2C+listen+to+this&type=video&order=relevance&maxResults=10&publishedAfter=2026-04-12T14%3A34%3A18Z&key=AIzaSyAjhnN4MPJSclVX6jElZz2Do2Zo1UjNkCQ"
+  },
+  {
+    "timestamp": "2026-05-27T14:34:18Z",
+    "type": "search_error",
+    "channel": "faith",
+    "query": "This truth can change how you see your struggle",
+    "error": "429 Client Error: Too Many Requests for url: https://www.googleapis.com/youtube/v3/search?part=snippet&q=This+truth+can+change+how+you+see+your+struggle&type=video&order=relevance&maxResults=10&publishedAfter=2026-04-12T14%3A34%3A18Z&key=AIzaSyAjhnN4MPJSclVX6jElZz2Do2Zo1UjNkCQ"
+  },
+  {
+    "timestamp": "2026-05-27T14:35:35Z",
+    "type": "daily_run_summary",
+    "channel": "faith",
+    "channel_name": "Faith Encouragement",
+    "raw_result_count": 170,
+    "candidate_count": 15,
+    "approved_count": 8,
+    "approved_topics": [
+      "God’s Voice or My Thoughts? 5 Red Flags and 5 Green Lights",
+      "Nighttime Anxiety: A 7‑Minute Wind‑Down with Scripture and Science",
+      "Panic to Prayer: Turn a Spiral into a Psalm in 3 Minutes",
+      "Loneliness in the Bible: 5 People God Met Alone and What It Means for You",
+      "When Nothing Changes: Trusting God’s Hidden Work (Joseph’s Waiting School)",
+      "From Dry Prayers to Living Water: Reviving a Stale Quiet Time",
+      "Purpose When You Feel Lost: 4 Biblical Questions to Find Your Next Step",
+      "Breaking the Control Habit: Surrender Practices for Real Peace"
+    ]
   }
 ]
