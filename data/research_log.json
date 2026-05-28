@@ -2042,5 +2042,110 @@
       "Purpose When You Feel Lost: 4 Biblical Questions to Find Your Next Step",
       "Breaking the Control Habit: Surrender Practices for Real Peace"
     ]
+  },
+  {
+    "timestamp": "2026-05-28T14:45:48Z",
+    "type": "search_error",
+    "channel": "faith",
+    "query": "what grace really means",
+    "error": "429 Client Error: Too Many Requests for url: https://www.googleapis.com/youtube/v3/search?part=snippet&q=what+grace+really+means&type=video&order=relevance&maxResults=10&publishedAfter=2026-04-13T14%3A45%3A48Z&key=AIzaSyAjhnN4MPJSclVX6jElZz2Do2Zo1UjNkCQ"
+  },
+  {
+    "timestamp": "2026-05-28T14:45:48Z",
+    "type": "search_error",
+    "channel": "faith",
+    "query": "why Christians struggle with peace",
+    "error": "429 Client Error: Too Many Requests for url: https://www.googleapis.com/youtube/v3/search?part=snippet&q=why+Christians+struggle+with+peace&type=video&order=relevance&maxResults=10&publishedAfter=2026-04-13T14%3A45%3A48Z&key=AIzaSyAjhnN4MPJSclVX6jElZz2Do2Zo1UjNkCQ"
+  },
+  {
+    "timestamp": "2026-05-28T14:45:48Z",
+    "type": "search_error",
+    "channel": "faith",
+    "query": "how to deal with spiritual dryness",
+    "error": "429 Client Error: Too Many Requests for url: https://www.googleapis.com/youtube/v3/search?part=snippet&q=how+to+deal+with+spiritual+dryness&type=video&order=relevance&maxResults=10&publishedAfter=2026-04-13T14%3A45%3A48Z&key=AIzaSyAjhnN4MPJSclVX6jElZz2Do2Zo1UjNkCQ"
+  },
+  {
+    "timestamp": "2026-05-28T14:45:49Z",
+    "type": "search_error",
+    "channel": "faith",
+    "query": "what the Bible says about depression",
+    "error": "429 Client Error: Too Many Requests for url: https://www.googleapis.com/youtube/v3/search?part=snippet&q=what+the+Bible+says+about+depression&type=video&order=relevance&maxResults=10&publishedAfter=2026-04-13T14%3A45%3A49Z&key=AIzaSyAjhnN4MPJSclVX6jElZz2Do2Zo1UjNkCQ"
+  },
+  {
+    "timestamp": "2026-05-28T14:45:49Z",
+    "type": "search_error",
+    "channel": "faith",
+    "query": "what the Bible says about worry",
+    "error": "429 Client Error: Too Many Requests for url: https://www.googleapis.com/youtube/v3/search?part=snippet&q=what+the+Bible+says+about+worry&type=video&order=relevance&maxResults=10&publishedAfter=2026-04-13T14%3A45%3A49Z&key=AIzaSyAjhnN4MPJSclVX6jElZz2Do2Zo1UjNkCQ"
+  },
+  {
+    "timestamp": "2026-05-28T14:45:50Z",
+    "type": "search_error",
+    "channel": "faith",
+    "query": "how to fight negative thoughts biblically",
+    "error": "429 Client Error: Too Many Requests for url: https://www.googleapis.com/youtube/v3/search?part=snippet&q=how+to+fight+negative+thoughts+biblically&type=video&order=relevance&maxResults=10&publishedAfter=2026-04-13T14%3A45%3A50Z&key=AIzaSyAjhnN4MPJSclVX6jElZz2Do2Zo1UjNkCQ"
+  },
+  {
+    "timestamp": "2026-05-28T14:45:50Z",
+    "type": "search_error",
+    "channel": "faith",
+    "query": "If you're feeling anxious, watch this",
+    "error": "429 Client Error: Too Many Requests for url: https://www.googleapis.com/youtube/v3/search?part=snippet&q=If+you%27re+feeling+anxious%2C+watch+this&type=video&order=relevance&maxResults=10&publishedAfter=2026-04-13T14%3A45%3A50Z&key=AIzaSyAjhnN4MPJSclVX6jElZz2Do2Zo1UjNkCQ"
+  },
+  {
+    "timestamp": "2026-05-28T14:45:51Z",
+    "type": "search_error",
+    "channel": "faith",
+    "query": "You may be overthinking this",
+    "error": "429 Client Error: Too Many Requests for url: https://www.googleapis.com/youtube/v3/search?part=snippet&q=You+may+be+overthinking+this&type=video&order=relevance&maxResults=10&publishedAfter=2026-04-13T14%3A45%3A51Z&key=AIzaSyAjhnN4MPJSclVX6jElZz2Do2Zo1UjNkCQ"
+  },
+  {
+    "timestamp": "2026-05-28T14:45:51Z",
+    "type": "search_error",
+    "channel": "faith",
+    "query": "This is why you still feel stuck",
+    "error": "429 Client Error: Too Many Requests for url: https://www.googleapis.com/youtube/v3/search?part=snippet&q=This+is+why+you+still+feel+stuck&type=video&order=relevance&maxResults=10&publishedAfter=2026-04-13T14%3A45%3A51Z&key=AIzaSyAjhnN4MPJSclVX6jElZz2Do2Zo1UjNkCQ"
+  },
+  {
+    "timestamp": "2026-05-28T14:45:51Z",
+    "type": "search_error",
+    "channel": "faith",
+    "query": "You need to hear this today",
+    "error": "429 Client Error: Too Many Requests for url: https://www.googleapis.com/youtube/v3/search?part=snippet&q=You+need+to+hear+this+today&type=video&order=relevance&maxResults=10&publishedAfter=2026-04-13T14%3A45%3A51Z&key=AIzaSyAjhnN4MPJSclVX6jElZz2Do2Zo1UjNkCQ"
+  },
+  {
+    "timestamp": "2026-05-28T14:45:51Z",
+    "type": "search_error",
+    "channel": "faith",
+    "query": "If you're tired of waiting on God, listen to this",
+    "error": "429 Client Error: Too Many Requests for url: https://www.googleapis.com/youtube/v3/search?part=snippet&q=If+you%27re+tired+of+waiting+on+God%2C+listen+to+this&type=video&order=relevance&maxResults=10&publishedAfter=2026-04-13T14%3A45%3A51Z&key=AIzaSyAjhnN4MPJSclVX6jElZz2Do2Zo1UjNkCQ"
+  },
+  {
+    "timestamp": "2026-05-28T14:45:51Z",
+    "type": "search_error",
+    "channel": "faith",
+    "query": "This truth can change how you see your struggle",
+    "error": "429 Client Error: Too Many Requests for url: https://www.googleapis.com/youtube/v3/search?part=snippet&q=This+truth+can+change+how+you+see+your+struggle&type=video&order=relevance&maxResults=10&publishedAfter=2026-04-13T14%3A45%3A51Z&key=AIzaSyAjhnN4MPJSclVX6jElZz2Do2Zo1UjNkCQ"
+  },
+  {
+    "timestamp": "2026-05-28T14:49:32Z",
+    "type": "daily_run_summary",
+    "channel": "faith",
+    "channel_name": "Faith Encouragement",
+    "raw_result_count": 150,
+    "candidate_count": 15,
+    "approved_count": 10,
+    "approved_topics": [
+      "When God Feels Silent: 4 Biblical Reasons He Seems Quiet and How to Respond",
+      "What the Bible Really Says About Anxiety (And 3 Tools That Calm Your Mind)",
+      "Decision Anxiety: Knowing God’s Will Without a Sign From the Sky",
+      "Psalm 91 vs. Fear: What ‘Under His Wings’ Means When Panic Hits",
+      "Guilt vs. Shame: The Gospel’s Cure and a 3‑Step Reset for Your Conscience",
+      "Loneliness in Scripture: Elijah, David, and Jesus—What to Do When You Feel Invisible",
+      "Night Anxiety: How to Pray and Breathe Through 2 AM Fear",
+      "Overcoming Fear of the Future: Jesus’ Strategy in Matthew 6",
+      "Purpose in Uncertain Seasons: Walk Your Calling When You Don’t Feel Qualified",
+      "Spiritual Dryness: Why Your Devotions Feel Empty and How to Rekindle Desire"
+    ]
   }
 ]
